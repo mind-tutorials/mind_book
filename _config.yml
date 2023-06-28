@@ -73,7 +73,7 @@ launch_buttons:
   colab_url                 : "" # The URL of Google Colab (e.g., https://colab.research.google.com)
 
 repository:
-  url                       : https://github.com/Summer-MIND/mind_2023 # The URL to your book's repository
+  url                       : https://github.com/mind-tutorials/mind_book # The URL to your book's repository
   path_to_book              : "tutorials.mindsummerschool.com"  # A path to your book's folder, relative to the repository root.
   branch                    : master  # Which branch of the repository should be used when creating links
 
