@@ -48,7 +48,7 @@ html:
   use_issues_button         : true  # Whether to add an "open an issue" button
   use_multitoc_numbering    : true   # Continuous numbering across parts/chapters
   extra_navbar              : Post any questions to our <a href="https://www.askpbs.org/c/mind-summer-school/">Discourse Page</a>  # Will be displayed underneath the left navbar.
-  extra_footer              : Created by <a href="http://www.lukejchang.com/">Luke Chang</a> using <a href="https://jupyterbook.org/">Jupyter Book</a> and partially supported by an NSF CAREER Award 1848370.  # Will be displayed underneath the footer.
+  extra_footer              : Created by <a href="http://www.lukejchang.com/">Luke Chang</a> using <a href="https://jupyterbook.org/">Jupyter Book</a> and supported by NSF (CAREER Award 1848370) and the <a href="https://www.interactingminds.com/">Consortium for Interacting Minds</a>. Please post any questions on our <a href="https://www.askpbs.org/c/mind-summer-school/">Discourse Page</a>.  # Will be displayed underneath the footer.
   google_analytics_id       : ""  # A GA id that can be used to track book views.
   home_page_in_navbar       : false  # Whether to include your home page in the left Navigation Bar
   baseurl                   : "http://tutorials.mindsummerschool.com"  # The base URL where your book will be hosted. Used for creating image previews and social links. e.g.: https://mypage.com/mybook/

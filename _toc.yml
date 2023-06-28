@@ -9,13 +9,7 @@ parts:
       - file: content/Download_Data
       - file: content/Software
       - file: content/Preprocessing
-  - caption: Analysis Tutorials
-    chapters:
-      - file: content/Functional_Alignment
-      - file: content/Intersubject_Correlation
-      - file: content/timecorr
-      - file: content/hypertools
-  - part: Background Resources
+  - caption: Background Resources
     chapters:
       - file: content/1_Introduction_to_Programming
       - file: content/2_Introduction_to_Pandas
@@ -25,3 +19,14 @@ parts:
         title: Dartbrains Neuroimaging Analysis Course
       - url: http://naturalistic-data.org
         title: Naturalistic Data Analysis Course
+  - caption: Analysis Tutorials
+    chapters:
+      - file: content/Functional_Alignment
+      - file: content/Intersubject_Correlation
+      - file: content/timecorr
+      - file: content/hypertools
+  - caption: Contributing Tutorials
+    chapters:
+      - file: content/Contributing
+      - url: https://github.com/mind-tutorials/mind_book
+        title: GitHub Repository
