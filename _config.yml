@@ -36,6 +36,7 @@ parse:
    - linkify
    - substitution
    - tasklist
+   - html_image
   myst_dmath_double_inline: true  # Allow display math ($$) within an inline context
 
 #######################################################################################
@@ -50,7 +51,7 @@ html:
   extra_footer              : Created by <a href="http://www.lukejchang.com/">Luke Chang</a> using <a href="https://jupyterbook.org/">Jupyter Book</a> and partially supported by an NSF CAREER Award 1848370.  # Will be displayed underneath the footer.
   google_analytics_id       : ""  # A GA id that can be used to track book views.
   home_page_in_navbar       : false  # Whether to include your home page in the left Navigation Bar
-  baseurl                   : "tutorials.mindsummerschool.com"  # The base URL where your book will be hosted. Used for creating image previews and social links. e.g.: https://mypage.com/mybook/
+  baseurl                   : "http://tutorials.mindsummerschool.com"  # The base URL where your book will be hosted. Used for creating image previews and social links. e.g.: https://mypage.com/mybook/
   
   comments:
     hypothesis              : true
@@ -70,7 +71,7 @@ launch_buttons:
   binderhub_url             : https://mybinder.org  # The URL of the BinderHub (e.g., https://mybinder.org)
   jupyterhub_url            : ""  # The URL of the JupyterHub (e.g., https://datahub.berkeley.edu)
   thebe                     : false  # Add a thebe button to pages (requires the repository to run on Binder)
-  colab_url                 : "" # The URL of Google Colab (e.g., https://colab.research.google.com)
+  colab_url                 : "https://colab.research.google.com" # The URL of Google Colab (e.g., https://colab.research.google.com)
 
 repository:
   url                       : https://github.com/mind-tutorials/mind_book # The URL to your book's repository
