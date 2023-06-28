@@ -21,4 +21,5 @@ networkx
 datalad >= 0.12.6
 requests
 urllib3
+jupyter-book
 
