@@ -15,3 +15,13 @@ parts:
       - file: content/Intersubject_Correlation
       - file: content/timecorr
       - file: content/hypertools
+  - part: Background Resources
+    chapters:
+      - file: content/1_Introduction_to_Programming
+      - file: content/2_Introduction_to_Pandas
+      - file: content/3_Introduction_to_Plotting
+      - file: content/5_Introduction_to_Neuroimaging_Data
+      - url: http://dartbrains.org/
+        title: Dartbrains Neuroimaging Analysis Course
+      - url: http://naturalistic-data.org
+        title: Naturalistic Data Analysis Course
