@@ -25,6 +25,7 @@ parts:
       - file: content/Intersubject_Correlation
       - file: content/timecorr
       - file: content/hypertools
+      - file: content/generative_faces
   - caption: Contributing Tutorials
     chapters:
       - file: content/Contributing
