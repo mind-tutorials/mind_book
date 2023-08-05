@@ -1,0 +1,2005 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Models of text and language &#8212; MIND2023 Interacting Minds</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/models_of_text_and_language';</script>
+    <link rel="canonical" href="http://tutorials.mindsummerschool.com/content/models_of_text_and_language.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Contributing" href="Contributing.html" />
+    <link rel="prev" title="PsychInsight: A high-level API for creating and epxloring novel face stimuli" href="generative_faces.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/mind_logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/mind_logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Overview</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Contributors.html">Contributors</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Download_Data.html">Download Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Software.html">Software Installation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Background Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_Introduction_to_Programming.html">Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_Introduction_to_Pandas.html">Introduction to Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_Introduction_to_Plotting.html">Introduction to Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_Introduction_to_Neuroimaging_Data.html">Introduction to Neuroimaging Data</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://dartbrains.org/">Dartbrains Neuroimaging Analysis Course</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://naturalistic-data.org">Naturalistic Data Analysis Course</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analysis Tutorials</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Functional_Alignment.html">Functional Alignment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Intersubject_Correlation.html">Synchrony &amp; Alignment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timecorr.html">Dynamic Connectivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypertools.html">Visualizing High Dimensional Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generative_faces.html">PsychInsight: A high-level API for creating and epxloring novel face stimuli</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Models of text and language</a></li>
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contributing Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/mind-tutorials/mind_book">GitHub Repository</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/mind-tutorials/mind_book/master?urlpath=tree/content/models_of_text_and_language.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/mind-tutorials/mind_book/blob/master/content/models_of_text_and_language.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/mind-tutorials/mind_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mind-tutorials/mind_book/edit/master/content/models_of_text_and_language.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mind-tutorials/mind_book/issues/new?title=Issue%20on%20page%20%2Fcontent/models_of_text_and_language.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/content/models_of_text_and_language.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Models of text and language</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Models of text and language</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background-and-overview">Background and overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natural-language-processing-of-movie-conversations">Natural Language Processing of movie conversations?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#meet-your-friendly-personalized-robo-ta">Meet your friendly personalized Robo-TA 🤖!</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#text-embedding-models">Text embedding models</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#text-embedding-example-1-latent-dirichlet-allocation">Text embedding example 1: Latent Dirichlet Allocation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#text-embedding-example-2-deep-embeddings">Text embedding example 2: deep embeddings</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#within-document-dynamics">Within-document “dynamics”</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#suggested-follow-ups-questions-and-exercises">Suggested follow-ups questions and exercises</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-agents">Interactive agents</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatbot-demo-1-interactive-tutor">Chatbot demo 1: interactive “tutor”</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chatbot-demo-2-run-a-chatbot-locally">Chatbot demo 2: run a chatbot locally!</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#followup-things-to-explore-try">Followup things to explore/try</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <p><a href="https://colab.research.google.com/github/jeremymanning/mind_book/blob/master/content/models_of_text_and_language.ipynb" target="_parent"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<section class="tex2jax_ignore mathjax_ignore" id="models-of-text-and-language">
+<h1>Models of text and language<a class="headerlink" href="#models-of-text-and-language" title="Permalink to this heading">#</a></h1>
+<p>Author: Jeremy R. Manning</p>
+<p>MIND Summer School (2023)</p>
+<p>Dartmouth College</p>
+<section id="background-and-overview">
+<h2>Background and overview<a class="headerlink" href="#background-and-overview" title="Permalink to this heading">#</a></h2>
+<p>Natural language processing (NLP) is a branch of the field of <a class="reference external" href="https://en.wikipedia.org/wiki/Computational_linguistics">computational linguistics</a>.  The fundamental goal of NLP is to use computational approaches to process, analyze, and understand language.</p>
+<p>In this tutorial, we’ll experiment with two aspects of NLP:</p>
+<ul class="simple">
+<li><p>Text embedding</p></li>
+<li><p>Interactive agents (chatbots)</p></li>
+</ul>
+<section id="natural-language-processing-of-movie-conversations">
+<h3>Natural Language Processing of movie conversations?<a class="headerlink" href="#natural-language-processing-of-movie-conversations" title="Permalink to this heading">#</a></h3>
+<p>The approaches covered below can be applied to virtually any text dataset– stories, video or conversation transcripts, instruction manuals…you name it!  You can feel free to swap out your own preferred dataset and try out the approaches below.</p>
+<p>As an illustrative example, today we’ll apply NLP to a <a class="reference external" href="https://convokit.cornell.edu/documentation/movie.html">movie dialogue dataset</a> from the <a class="reference external" href="https://convokit.cornell.edu/">Cornell Conversational Analaysis Toolkit (ConvKit)</a>.  ConvKit provides a set of nice tools for working with conversation data, along with some neat datasets.</p>
+<img alt="https://media0.giphy.com/media/26h0pkvcgnFIpvU1a/giphy.gif" src="https://media0.giphy.com/media/26h0pkvcgnFIpvU1a/giphy.gif" />
+<p>There’s no particularly compelling reason for choosing this dataset over the thousands of other text corporate that are “out there” in the world.  But this one seemed passingly interesting, so here we are!</p>
+<p>If you’re looking for other text datasets, here are some good places to start:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/CornellNLP/ConvoKit#datasets">ConvKit datasets</a>: lots of neat conversation-related datasets</p></li>
+<li><p><a class="reference external" href="https://huggingface.co/datasets">Hugging Face datasets</a>: tens of thousands of datasets of practically every shape, size, and theme.  Quality is variable across datasets, but there are <em>many</em> excellent datasets here.</p></li>
+<li><p><a class="reference external" href="https://github.com/niderhoff/nlp-datasets">NLP Datasets</a>: lots of interesting datasets.  A sampling: Amazon reviews, ArXiv, Enron emails, several social media datasets, several news datasets, and more!</p></li>
+<li><p><a class="reference external" href="https://data.fivethirtyeight.com/">FiveThirtyEight Data</a>: the data behind (most) FiveThirtyEight articles</p></li>
+<li><p><a class="reference external" href="https://open.nytimes.com/data/home">NYT Open</a>: lots of interesting datasets behind an assortment of New York Times articles</p></li>
+</ul>
+</section>
+</section>
+<section id="meet-your-friendly-personalized-robo-ta">
+<h2>Meet your friendly personalized Robo-TA 🤖!<a class="headerlink" href="#meet-your-friendly-personalized-robo-ta" title="Permalink to this heading">#</a></h2>
+<p>Before we get started, check it out: this notebook has been augmented by incorporating an (experimental!) NLP tool, called <a class="reference external" href="https://github.com/ContextLab/chatify">Chatify</a> for providing interactive assistance.  Chatify uses a <a class="reference external" href="https://en.wikipedia.org/wiki/Large_language_model">large language model</a> to (attempt to) help you understand or explore any code cell in this notebook. <strong>Disclaimer: Chatify may provide incorrect, misleading, and/or otherwise harmful responses.</strong></p>
+<p>If you want to use Chatify, add the <code class="docutils literal notranslate"><span class="pre">%%explain</span></code> magic command to the start of any code cell, and then run the cell (shift + enter). You can then select different options from the dropdown menus, depending on what sort of assistance you want. To disable Chatify and run the code as usual, simply delete the <code class="docutils literal notranslate"><span class="pre">%%explain</span></code> command and re-run the cell.  (If you <em>don’t</em> want to use chatify, simply don’t call the <code class="docutils literal notranslate"><span class="pre">%%explain</span></code> magic command.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Install [Davos](https://github.com/ContextLab/davos) for dependency management and code safety</span>
+<span class="o">%</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">qqq</span> <span class="n">davos</span>
+<span class="kn">import</span> <span class="nn">davos</span>
+<span class="n">davos</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">suppress_stdout</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/78.8 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+     ━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">30.7/78.8 kB</span> <span class=" -Color -Color-Red">2.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━ <span class=" -Color -Color-Green">71.7/78.8 kB</span> <span class=" -Color -Color-Red">1.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">78.8/78.8 kB</span> <span class=" -Color -Color-Red">1.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Install and enable Chatify</span>
+<span class="n">smuggle</span> <span class="n">chatify</span>      <span class="c1"># pip: git+https://github.com/ContextLab/chatify.git</span>
+<span class="o">%</span><span class="n">load_ext</span> <span class="n">chatify</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Chatify has been installed and loaded! 🤖&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Chatify has been installed and loaded! 🤖
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="text-embedding-models">
+<h1>Text embedding models<a class="headerlink" href="#text-embedding-models" title="Permalink to this heading">#</a></h1>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Word_embedding">Text embedding models</a> are concerned with deriving mathematical representations of the “meaning” of language.  Meanings are represented as <a class="reference external" href="https://en.wikipedia.org/wiki/Feature_(machine_learning)">feature vectors</a> whose elements reflect (typically abstract) semantic properties.  The idea is that texts that convey similar meanings should have feature vectors that are “similar” (e.g., nearby in Euclidean distance, correlated, etc.).</p>
+<p>One of the earliest text embedding models was <a class="reference external" href="https://en.wikipedia.org/wiki/Latent_semantic_analysis">Latent Semantic Analysis (LSA)</a>.  LSA is driven by a “word counts matrix” whose rows denote documents in a large corupus, and whose columns denote unique terms (e.g., the unique set of stemmed and lematized words in the corpus, excluding <a class="reference external" href="https://en.wikipedia.org/wiki/Stop_word">stop words</a>.).  The entries in the word counts matrix denote the number of times a given word (column) appears in a given document (row).  Applying <a class="reference external" href="https://en.wikipedia.org/wiki/Matrix_decomposition">matrix factorization</a> to the word counts matrix yields a <em>documents matrix</em> (whose rows are documents and whose columsn are “concepts”) and a <em>words matrix</em> (whose rows are concepts and whose columns are words).  In this way, we can think of each “concept” as being describable by a weighted blend of the meanings of the unique words in the model’s vocabulary.  The rows of the documents matrix may be used as “embeddings” of the documents (where similar documents are represented by similar embedding vectors) and the columns of the words matrix may be used as “embeddings” of the words (where similar words are represented by similar embeddings).</p>
+<p>Topic models like <a class="reference external" href="https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation">Latent Dirichlet Allocation (LDA)</a> extended some of the fundamental ideas of LSA into a <a class="reference external" href="https://en.wikipedia.org/wiki/Generative_model">generative model</a>.  According to LDA, each “topic” (analogous to a “concept” in LSA) is a weighted blend of words in the model’s vocabulary.  Also analogous to LSA, LDA posits that each “document” reflects a weighted blend of topics.  The main difference between LSA and LDA is that LDA provides a mechanism that allows each word to potentially take on several meanings dependings on how it is used in a given document.  For example, the word “bat” might reflect an animal, a piece of sporting equipment, something done with eyelashes, and so on.</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Word2vec">Word2vec</a> further extended the notion of word embeddings using one of the earliest <a class="reference external" href="https://en.wikipedia.org/wiki/Deep_learning">deep learning</a> approaches to text embedding.  Like LSA and LDA, word2vec considers each word (from each document) independently, without regard for context or grammar (i.e., it is a so-called “<a class="reference external" href="https://en.wikipedia.org/wiki/Bag-of-words_model">bag-of-words</a>” model).</p>
+<p>Most modern text embedding models incorporate some notion of word order effects, grammar, context, or other temporally varying signals. In addition to advances in the network archetectures of text embedding models, improvements in computing technology have enabled models to consider increasingly longer-duration and more complicated influences on meaning.  Whereas earlier context-sensitive models operated at scales of <a class="reference external" href="https://en.wikipedia.org/wiki/Sentence_embedding">individual sentences</a>, the most <a class="reference external" href="https://en.wikipedia.org/wiki/Large_language_model">recent models</a> operate over scales on the order to many thousands of words (e.g., entire documents and sometimes even sequences of documents).  Today’s best-performing text embedding models nearly all incorporate a network module called a <a class="reference external" href="https://en.wikipedia.org/wiki/Transformer_(machine_learning_model)">transformer</a>.  Transforms provide a means of generating representations of inputted text that reflect which words are present along with positional information.  Early transfomer-based models were used primarily for “sequence-to-sequence” tasks like <a class="reference external" href="https://en.wikipedia.org/wiki/Machine_translation">machine translation</a>, but their use has since grown to dominate the field of NLP.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Set up and install dependencies</span>
+
+<span class="c1"># data wrangling and scraping</span>
+<span class="n">smuggle</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">smuggle</span> <span class="n">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="n">smuggle</span> <span class="n">datawrangler</span> <span class="k">as</span> <span class="n">dw</span>  <span class="c1"># pip: pydata-wrangler[hf]</span>
+<span class="n">smuggle</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span> <span class="k">as</span> <span class="n">signal</span>
+<span class="n">smuggle</span> <span class="n">os</span>
+<span class="n">smuggle</span> <span class="n">pickle</span>
+<span class="n">smuggle</span> <span class="n">warnings</span>
+<span class="kn">from</span> <span class="nn">convokit</span> <span class="n">smuggle</span> <span class="n">Corpus</span><span class="p">,</span> <span class="n">download</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="n">smuggle</span> <span class="n">chain</span>
+
+<span class="c1"># NLP stuff</span>
+<span class="kn">from</span> <span class="nn">langchain.llms</span> <span class="n">smuggle</span> <span class="n">LlamaCpp</span>
+<span class="kn">from</span> <span class="nn">langchain</span> <span class="n">smuggle</span> <span class="n">PromptTemplate</span><span class="p">,</span> <span class="n">LLMChain</span>
+<span class="kn">from</span> <span class="nn">langchain.prompts</span> <span class="n">smuggle</span> <span class="n">SystemMessagePromptTemplate</span><span class="p">,</span> <span class="n">HumanMessagePromptTemplate</span><span class="p">,</span> <span class="n">ChatPromptTemplate</span>
+<span class="n">smuggle</span> <span class="n">transformers</span>
+<span class="n">smuggle</span> <span class="n">llama_cpp</span>           <span class="c1"># pip: llama-cpp-python</span>
+<span class="kn">from</span> <span class="nn">huggingface_hub</span> <span class="n">smuggle</span> <span class="n">hf_hub_download</span>
+
+<span class="c1"># general-purpose machine learning and stats libraries</span>
+<span class="n">smuggle</span> <span class="n">sklearn</span> <span class="k">as</span> <span class="n">skl</span>
+<span class="n">smuggle</span> <span class="n">scipy</span> <span class="k">as</span> <span class="n">sp</span>
+<span class="n">smuggle</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span> <span class="k">as</span> <span class="n">signal</span>
+
+<span class="c1"># data visualization</span>
+<span class="n">smuggle</span> <span class="n">matplotlib</span> <span class="k">as</span> <span class="n">mpl</span>
+<span class="n">smuggle</span> <span class="n">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+<span class="n">smuggle</span> <span class="n">hypertools</span> <span class="k">as</span> <span class="n">hyp</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Markdown</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;External dependencies have been loaded and configured.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>External dependencies have been loaded and configured.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Download the Movie-Dialogs corpus</span>
+
+<span class="n">corpus</span> <span class="o">=</span> <span class="n">Corpus</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;movie-corpus&#39;</span><span class="p">))</span>
+<span class="n">corpus</span><span class="o">.</span><span class="n">print_summary_stats</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading movie-corpus to /root/.convokit/downloads/movie-corpus
+Downloading movie-corpus from http://zissou.infosci.cornell.edu/convokit/datasets/movie-corpus/movie-corpus.zip (40.9MB)... Done
+No configuration file found at /root/.convokit/config.yml; writing with contents: 
+# Default Backend Parameters
+db_host: localhost:27017
+data_directory: ~/.convokit/saved-corpora
+default_backend: mem
+Number of Speakers: 9035
+Number of Utterances: 304713
+Number of Conversations: 83097
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_conversation_md</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">include_speakers</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">include_text</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+  <span class="n">characters</span> <span class="o">=</span> <span class="p">{</span><span class="nb">id</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">get_speaker</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;character_name&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">get_speaker_ids</span><span class="p">()}</span>
+
+  <span class="n">result</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+  <span class="k">for</span> <span class="n">utt</span> <span class="ow">in</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">get_utterance</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">get_utterance_ids</span><span class="p">()]:</span>
+    <span class="n">next_line</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+    <span class="n">speaker</span> <span class="o">=</span> <span class="n">utt</span><span class="o">.</span><span class="n">get_speaker</span><span class="p">()</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s2">&quot;character_name&quot;</span><span class="p">]</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">utt</span><span class="o">.</span><span class="n">text</span>
+
+    <span class="k">if</span> <span class="n">include_speakers</span><span class="p">:</span>
+      <span class="n">next_line</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;**</span><span class="si">{</span><span class="n">speaker</span><span class="si">}</span><span class="s1">&#39;</span>
+      <span class="k">if</span> <span class="n">include_text</span><span class="p">:</span>
+        <span class="n">next_line</span> <span class="o">+=</span> <span class="s1">&#39;:&#39;</span>
+      <span class="n">next_line</span> <span class="o">+=</span> <span class="s1">&#39;**&#39;</span>
+      <span class="k">if</span> <span class="n">include_text</span><span class="p">:</span>
+        <span class="n">next_line</span> <span class="o">+=</span> <span class="s1">&#39; &#39;</span>
+    <span class="k">if</span> <span class="n">include_text</span><span class="p">:</span>
+      <span class="n">next_line</span> <span class="o">+=</span> <span class="n">text</span>
+
+    <span class="k">if</span> <span class="n">include_speakers</span> <span class="ow">or</span> <span class="n">include_text</span><span class="p">:</span>
+      <span class="n">result</span> <span class="o">+=</span> <span class="n">next_line</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span>
+
+  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">result</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Display the full text of a randomly chosen conversation (re-run this cell to pick another conversation!)</span>
+<span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">corpus</span><span class="o">.</span><span class="n">conversations</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+<span class="n">conversation_id</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">corpus</span><span class="o">.</span><span class="n">conversations</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="n">i</span><span class="p">]</span>
+<span class="n">example_conversation</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">conversations</span><span class="p">[</span><span class="n">conversation_id</span><span class="p">]</span>
+
+<span class="n">intro</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;### Randomly selected conversation from the movie **</span><span class="si">{</span><span class="n">example_conversation</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;movie_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">**:&quot;</span>
+
+<span class="n">Markdown</span><span class="p">(</span><span class="n">intro</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">get_conversation_md</span><span class="p">(</span><span class="n">example_conversation</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<p class="rubric">Randomly selected conversation from the movie <strong>KING KONG</strong>:</p>
+<p><strong>JACK:</strong> Value? … Value?</p>
+<p><strong>ANN:</strong> God, you’re so obnoxious! Our work happens to be of great anthropological value!</p>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Get the rest of the dialogue from the example movie and reformat</span>
+
+<span class="n">movie_conversations</span> <span class="o">=</span> <span class="p">[</span><span class="n">corpus</span><span class="o">.</span><span class="n">get_conversation</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">corpus</span><span class="o">.</span><span class="n">get_conversation_ids</span><span class="p">()</span> <span class="k">if</span> <span class="n">corpus</span><span class="o">.</span><span class="n">get_conversation</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;movie_name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">example_conversation</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;movie_name&#39;</span><span class="p">]]</span>
+<span class="n">conversation_text</span> <span class="o">=</span> <span class="p">[</span><span class="n">get_conversation_md</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">include_speakers</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">movie_conversations</span><span class="p">]</span>
+<span class="n">speakers</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">get_conversation_md</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">include_text</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;**&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">movie_conversations</span><span class="p">]</span>
+
+<span class="n">cast</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="n">speakers</span><span class="p">)))</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">cast_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span> <span class="ow">in</span> <span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">speakers</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">cast</span><span class="p">}</span>
+
+<span class="n">conversations_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;CONVERSATION TEXT&#39;</span><span class="p">:</span> <span class="n">conversation_text</span><span class="p">,</span> <span class="o">**</span><span class="n">cast_dict</span><span class="p">})</span>
+<span class="n">conversations_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+
+  <div id="df-b9790d83-fdeb-46d6-8402-0f84d129590e">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CONVERSATION TEXT</th>
+      <th>ANN</th>
+      <th>DENHAM</th>
+      <th>ENGLEHORN</th>
+      <th>JACK</th>
+      <th>KID</th>
+      <th>LORD DARROW</th>
+      <th>MR GINTING</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Now Ann ... Get the hell out of here.''!</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Take your filthy paws off him -you ignorant pi...</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>To be quite honest, Mr Denham ... I find the w...</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Miss Darrow ... I've been thinking. I would ve...</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Kong is a myth, nothing but a native superstit...</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Does this look like the "Queen Mary"?? We don'...</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Look Mr Denham - you're not welcome here. Just...</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Now now, Ann! Try be to polite. Oh God, it's t...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>All in due course, Ann. Our first responsibili...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Father ... Father! Out! Out! All of you! We ha...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>These are priceless artifacts! They're ruining...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Photography teaches you nothing, Ann! Click! O...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>I think you're trying to run before you can wa...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>It' s alright Jack ... it' s alright. Ann ... ...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>You're the animals - all of you! Take to look ...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Jack!...  Jack! Barricade the gates! Quick!</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>No! Don't! I'm not sailing with this thing on ...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>This shit is bad luck! Don't you understand? Y...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Ann ... you're father is dead. You have nothin...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Leave it, Ann. It's the same image - Kong!</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Sun's coming up ...  We've been in the fog for...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Relax ... it was fifteen years ago. I don't do...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>When this boat finally reaches Jakata, I'll be...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Are you kidding?! That heap of junk will never...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>I not doing this for me, Jack! It's for my fat...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>No! I'm sorry ...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Value? ... Value? God, you're so obnoxious! Ou...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>Do they have him on display at the weekends? H...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>Tell me, Mr Driscoll - is it a requirement of ...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>Oh my God ... Ann? They' re dead. Just take it...</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>We should never have come! I pay you good mone...</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>Well, that was a monumental waste of time! I p...</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>Two... maybe three. I'm chartering this vessel...</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>We need those co-ordinates -someone's gotta ge...</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>A man eater! Fantastic!  Making history, Herb ...</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>That's too bad. We are a very modest and deepl...</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>Y'know ... traditional ceremonies where the wo...</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>The mountains? Exotic lands, primitive people,...</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>And I appreciate that so much, I really do - a...</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>Yeah. It must have been terrifying?</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>Yeah. Did you fear for your life?</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>Nab- Let's get it over with. Are you nervous J...</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>She's got a bit of an attitude, that girl. She...</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>How about Ann? Is she going with you? Not me. ...</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>I can't get back to the wall! I'll get eaten! ...</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>The girl's dead, Driscoll. There's no point co...</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>Forget it, Denham ... for Godssake Set up the ...</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>Yeah? ... Well, I gave 'em a taste of American...</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>) They are now. Hey! I thought these things we...</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>Kong ... That's your monkey, Denham. Holy shit...</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>You better not slow us down, Denham! Jack ... ...</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>An ape ... some kind of ape. What was it, Jack...</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>What's compassion, mister. Compassion. What's ...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-b9790d83-fdeb-46d6-8402-0f84d129590e')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+
+
+    <div id="df-0cec4b04-c0aa-42a3-ab7f-3aea27b57e5c">
+      <button class="colab-df-quickchart" onclick="quickchart('df-0cec4b04-c0aa-42a3-ab7f-3aea27b57e5c')"
+              title="Suggest charts."
+              style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+      </button>
+    </div>
+
+<style>
+  .colab-df-quickchart {
+    background-color: #E8F0FE;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: #1967D2;
+    height: 32px;
+    padding: 0 0 0 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: #E2EBFA;
+    box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: #174EA6;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+    background-color: #3B4455;
+    fill: #D2E3FC;
+  }
+
+  [theme=dark] .colab-df-quickchart:hover {
+    background-color: #434B5C;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+    fill: #FFFFFF;
+  }
+</style>
+
+    <script>
+      async function quickchart(key) {
+        const containerElement = document.querySelector('#' + key);
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      }
+    </script>
+
+      <script>
+
+function displayQuickchartButton(domScope) {
+  let quickchartButtonEl =
+    domScope.querySelector('#df-0cec4b04-c0aa-42a3-ab7f-3aea27b57e5c button.colab-df-quickchart');
+  quickchartButtonEl.style.display =
+    google.colab.kernel.accessAllowed ? 'block' : 'none';
+}
+
+        displayQuickchartButton(document);
+      </script>
+      <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-b9790d83-fdeb-46d6-8402-0f84d129590e button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-b9790d83-fdeb-46d6-8402-0f84d129590e');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+</div></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="text-embedding-example-1-latent-dirichlet-allocation">
+<h1>Text embedding example 1: Latent Dirichlet Allocation<a class="headerlink" href="#text-embedding-example-1-latent-dirichlet-allocation" title="Permalink to this heading">#</a></h1>
+<p>To see how we can fit a text embedding model “from scratch,” we’ll fit LDA to the movie reviews and visualize the main parts of the process.</p>
+<p>Generate (and visualize) the word counts matrix</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># how many times does each word appear in each conversation?</span>
+<span class="n">cv</span> <span class="o">=</span> <span class="n">skl</span><span class="o">.</span><span class="n">feature_extraction</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">CountVectorizer</span><span class="p">(</span><span class="n">max_df</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">min_df</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">word_counts</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">conversation_text</span><span class="p">)</span>
+
+<span class="n">counts_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">word_counts</span><span class="o">.</span><span class="n">todense</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">cv</span><span class="o">.</span><span class="n">vocabulary_</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">counts_df</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greens&#39;</span><span class="p">)</span>
+
+<span class="n">mpl</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Word/token&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Conversation ID&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Counts matrix&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4d57068b408a7d41fac3b94ffd75e1de7d0de40643c619d6a8e39ca803519f77.png" src="../_images/4d57068b408a7d41fac3b94ffd75e1de7d0de40643c619d6a8e39ca803519f77.png" />
+</div>
+</div>
+<p>Fit a topic model (with <span class="math notranslate nohighlight">\(k = 10\)</span> topics) to the word count matrix and visualize the resulting topics matrix</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">LDA</span> <span class="o">=</span> <span class="n">skl</span><span class="o">.</span><span class="n">decomposition</span><span class="o">.</span><span class="n">LatentDirichletAllocation</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                                                  <span class="n">learning_method</span><span class="o">=</span><span class="s1">&#39;online&#39;</span><span class="p">,</span>
+                                                  <span class="n">learning_offset</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+                                                  <span class="n">max_iter</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">conversation_topics</span> <span class="o">=</span> <span class="n">LDA</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">word_counts</span><span class="p">)</span>
+
+<span class="n">topics_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">conversation_topics</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">topics_df</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">)</span>
+
+<span class="n">mpl</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Topic&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Conversation ID&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Topics matrix&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05fb175374801b4a4612086ae240a5ea6e9ab0850cf6b5c3c1179a4572b4e8cb.png" src="../_images/05fb175374801b4a4612086ae240a5ea6e9ab0850cf6b5c3c1179a4572b4e8cb.png" />
+</div>
+</div>
+<p>Display the top words from each topic</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># display top words from the model</span>
+<span class="k">def</span> <span class="nf">get_top_words</span><span class="p">(</span><span class="n">lda_model</span><span class="p">,</span> <span class="n">vectorizer</span><span class="p">,</span> <span class="n">n_words</span><span class="o">=</span><span class="mi">15</span><span class="p">):</span>
+  <span class="n">vocab</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">vocabulary_</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+  <span class="n">top_words</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lda_model</span><span class="o">.</span><span class="n">components_</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+      <span class="n">top_words</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">vocab</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">lda_model</span><span class="o">.</span><span class="n">components_</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:])[::</span><span class="o">-</span><span class="mi">1</span><span class="p">][:</span><span class="n">n_words</span><span class="p">]])</span>
+  <span class="k">return</span> <span class="n">top_words</span>
+
+<span class="k">def</span> <span class="nf">top_words_string</span><span class="p">(</span><span class="n">lda_model</span><span class="p">,</span> <span class="n">vectorizer</span><span class="p">,</span> <span class="n">n_words</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;**Top </span><span class="si">{</span><span class="n">n_words</span><span class="si">}</span><span class="s1"> words from each of the </span><span class="si">{</span><span class="n">lda_model</span><span class="o">.</span><span class="n">n_components</span><span class="si">}</span><span class="s1"> topics:**&#39;</span>
+  <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">get_top_words</span><span class="p">(</span><span class="n">lda_model</span><span class="p">,</span> <span class="n">vectorizer</span><span class="p">,</span> <span class="n">n_words</span><span class="o">=</span><span class="n">n_words</span><span class="p">)):</span>
+      <span class="n">x</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">- *Topic </span><span class="si">{</span><span class="n">k</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s1">*: </span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">w</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span>
+
+  <span class="k">return</span> <span class="n">x</span>
+
+<span class="n">Markdown</span><span class="p">(</span><span class="n">top_words_string</span><span class="p">(</span><span class="n">LDA</span><span class="p">,</span> <span class="n">cv</span><span class="p">,</span> <span class="n">n_words</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<p><strong>Top 10 words from each of the 10 topics:</strong></p>
+<ul class="simple">
+<li><p><em>Topic 1</em>: is, father, they, me, some, ann, are, not, be, get</p></li>
+<li><p><em>Topic 2</em>: be, get, your, my, ann, don, out, island, are, do</p></li>
+<li><p><em>Topic 3</em>: jack, get, back, ann, yeah, have, is, can, this, don</p></li>
+<li><p><em>Topic 4</em>: what, do, have, are, island, yeah, ann, for, can, is</p></li>
+<li><p><em>Topic 5</em>: me, ll, my, can, are, this, have, some, ve, good</p></li>
+<li><p><em>Topic 6</em>: now, do, this, on, out, what, ann, they, don, get</p></li>
+<li><p><em>Topic 7</em>: with, ann, father, and, this, out, all, now, going, your</p></li>
+<li><p><em>Topic 8</em>: there, your, on, no, this, for, denham, ve, and, island</p></li>
+<li><p><em>Topic 9</em>: be, ll, good, for, denham, your, mr, and, have, get</p></li>
+<li><p><em>Topic 10</em>: for, going, me, denham, my, and, not, get, this, jack</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="text-embedding-example-2-deep-embeddings">
+<h1>Text embedding example 2: deep embeddings<a class="headerlink" href="#text-embedding-example-2-deep-embeddings" title="Permalink to this heading">#</a></h1>
+<p>First we’ll use the <a class="reference external" href="https://arxiv.org/abs/1909.11942">ALBERT</a> model to generate text embeddings.  Then we’ll compare the between-document similarities for LDA vs. ALBERT.  Note: <code class="docutils literal notranslate"><span class="pre">albert-base-v2</span></code> may be replaced with any model in <a class="reference external" href="https://huggingface.co/transformers/v2.3.0/pretrained_models.html">this list</a> if you want to explore other embeddings.  This cell takes a while (~20 mins?) to run in a free tier Google Colaboratory environment, so you may want to go grab a cup of coffee while you wait if you want to run the full thing ☕️. In the spirit of brevity, by default we’ll just embed the first 50 reviews.  (Even the “mini” version will take a few minutes, so hang tight!)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">albert</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="s1">&#39;TransformerDocumentEmbeddings&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;albert-base-v2&#39;</span><span class="p">],</span> <span class="s1">&#39;kwargs&#39;</span><span class="p">:</span> <span class="p">{}}</span>
+<span class="n">albert_embeddings</span> <span class="o">=</span> <span class="n">dw</span><span class="o">.</span><span class="n">wrangle</span><span class="p">(</span><span class="n">conversation_text</span><span class="p">,</span> <span class="n">text_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="n">albert</span><span class="p">})</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">albert_embeddings</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">)</span>
+
+<span class="n">mpl</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Embedding dimension&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Conversation ID&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Embeddings matrix&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "fb2d21c971e941d2a5417702a9411094"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "09393968f5694f73b8b7c59f67eb28e4"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "a2d35e55504c4546ae16f1eeb39c2681"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "2e68a4b65ca446829b96705b61303796"}</script><img alt="../_images/4775d508258fcb08934e1237e7db4f56547a3414ebc1cb89d10707bdb706df25.png" src="../_images/4775d508258fcb08934e1237e7db4f56547a3414ebc1cb89d10707bdb706df25.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Compare LDA vs. ALBERT embeddings</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">vmin</span><span class="o">=</span><span class="mf">0.1</span>
+<span class="n">vmax</span><span class="o">=</span><span class="mi">1</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">topics_df</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">corr</span><span class="p">(),</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">albert_embeddings</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">corr</span><span class="p">(),</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">topics_df</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">y</span><span class="o">=</span><span class="n">albert_embeddings</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">topics_df</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">y</span><span class="o">=</span><span class="n">albert_embeddings</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">scatter</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">top</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Conversation ID&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Conversation ID&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;LDA correlations&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Conversation ID&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;ALBERT correlations&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;LDA correlations&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;ALBERT correlations&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">);</span>
+
+<span class="n">mpl</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2556f6e9ff5da1aa89a3863f1a4790ec9c45b8629a46167f9b74bf02851b4c60.png" src="../_images/2556f6e9ff5da1aa89a3863f1a4790ec9c45b8629a46167f9b74bf02851b4c60.png" />
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="within-document-dynamics">
+<h1>Within-document “dynamics”<a class="headerlink" href="#within-document-dynamics" title="Permalink to this heading">#</a></h1>
+<p>The above embedding approaches cast each document as having a single “meaning” reflected by its embedding vector.  But <em>within</em> a document (e.g., different pages of a book, moments of a conversation, scenes in a movie or story, etc.) the conent may also change over time.</p>
+<p>Following <a class="reference external" href="https://www.nature.com/articles/s41562-021-01051-6.epdf">Heusser et al., 2021</a>, <a class="reference external" href="https://psycnet.apa.org/record/2021-47824-001">Manning, 2021</a>, <a class="reference external" href="https://doi.org/10.1038/s41598-022-17781-0">Manning et al., 2022</a>, <a class="reference external" href="https://psyarxiv.com/dh3q2">Fitzpatrick et al., 2023</a>, and others, we can use a “sliding window” approach to characterize how the content of a single document unfolds over time.</p>
+<p>There are three basic steps to this approach:</p>
+<ol class="arabic simple">
+<li><p>Divide the document’s text into (potentially overlapping) segments.  Each segment’s length can be defined as a certain number of words, a certain amount of time, or some other measure.  We also need to define a “step size” that determines where each window of text begins relative to the previous window.</p></li>
+<li><p>Embed each window’s text to obtain a single embedding for each sliding window. The embeddings may be computed using a pretrained model, or a new model may be fit (or fine-tuned) by treating each window’s text as a “document,” and the full set of windows as the training corpus.</p></li>
+<li><p>Resample the trajectory to have a predetermined number of timepoints (this enables us to compare different document’s trajectories) and (optionally) smooth the resampled trajectory (smoothing will even out “jumps” in the trajectory, which is particularly useful for short documents or documents, or when the step size is large).</p></li>
+</ol>
+<p>As a demonstration, let’s create a trajectory for the longest conversation in our randomly chosen movie…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Find the longest conversation and segment it into overlapping sliding windows</span>
+
+<span class="n">conversations_df</span><span class="p">[</span><span class="s1">&#39;CONVERSATION LENGTH&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">conversations_df</span><span class="p">[</span><span class="s1">&#39;CONVERSATION TEXT&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
+<span class="n">conversation</span> <span class="o">=</span> <span class="n">conversations_df</span><span class="p">[</span><span class="s1">&#39;CONVERSATION TEXT&#39;</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">conversations_df</span><span class="p">[</span><span class="s1">&#39;CONVERSATION LENGTH&#39;</span><span class="p">])]</span>
+<span class="n">Markdown</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;**Longest (concatenated) conversation:**. </span><span class="si">{</span><span class="n">conversation</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<p><strong>Longest (concatenated) conversation:</strong>. Tell me, Mr Driscoll - is it a requirement of the forestry business that you have to be as thick as the trees you cut down? You - calling me a thief? Well, that’s great, coming from a glorified grave robber! You break into the tomb of some dead Egyptian - the poor guy’s happily enjoying the afterlife when suddenly his shit gets stolen by a bunch of light fingered limeys! No, it’s not ok! We’re not about to be robbed blind by some two-bit hustler on the make! I just wanna deal with the boss, ok? He’s grubbing for money, father.</p>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">topic_trajectory</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">window_length</span><span class="p">,</span> <span class="n">dw</span><span class="p">,</span> <span class="n">lda</span><span class="p">,</span> <span class="n">vectorizer</span><span class="p">):</span>
+  <span class="n">trajectory</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">lda</span><span class="o">.</span><span class="n">n_components</span><span class="p">))</span>
+
+  <span class="k">try</span><span class="p">:</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+    <span class="n">end_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+  <span class="k">except</span><span class="p">:</span>
+    <span class="k">return</span> <span class="kc">None</span>
+
+  <span class="n">window_start</span> <span class="o">=</span> <span class="n">start_time</span>
+  <span class="k">while</span> <span class="n">window_start</span> <span class="o">&lt;</span> <span class="n">end_time</span><span class="p">:</span>
+    <span class="n">window_end</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">window_start</span> <span class="o">+</span> <span class="n">window_length</span> <span class="o">-</span> <span class="n">dw</span><span class="p">,</span> <span class="n">end_time</span><span class="p">])</span>
+    <span class="k">try</span><span class="p">:</span>
+      <span class="n">trajectory</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">window_start</span><span class="p">,</span> <span class="n">window_end</span><span class="p">])]</span> <span class="o">=</span> <span class="n">lda</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">vectorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">([</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">window_start</span><span class="p">:</span><span class="n">window_end</span><span class="p">][</span><span class="s1">&#39;word&#39;</span><span class="p">])]))[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span>
+      <span class="k">pass</span>
+
+    <span class="n">window_start</span> <span class="o">+=</span> <span class="n">dw</span>
+  <span class="k">return</span> <span class="n">trajectory</span>
+
+
+<span class="k">def</span> <span class="nf">resample_and_smooth</span><span class="p">(</span><span class="n">traj</span><span class="p">,</span> <span class="n">kernel_width</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+  <span class="k">if</span> <span class="n">traj</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">traj</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="k">return</span> <span class="kc">None</span>
+
+  <span class="k">try</span><span class="p">:</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">N</span><span class="p">,</span> <span class="n">traj</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">traj</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">num</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">traj</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+      <span class="n">r</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">savgol_filter</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">interpolate</span><span class="o">.</span><span class="n">pchip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">traj</span><span class="o">.</span><span class="n">values</span><span class="p">[:,</span> <span class="n">i</span><span class="p">])(</span><span class="n">xx</span><span class="p">),</span>
+                                    <span class="n">kernel_width</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+      <span class="n">r</span><span class="p">[:,</span> <span class="n">i</span><span class="p">][</span><span class="n">r</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">min_val</span><span class="p">]</span> <span class="o">=</span> <span class="n">min_val</span>
+
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">r</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">xx</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">traj</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+  <span class="k">except</span><span class="p">:</span>
+    <span class="k">return</span> <span class="kc">None</span>
+
+
+<span class="k">def</span> <span class="nf">trajectorize_conversation</span><span class="p">(</span><span class="n">conversation</span><span class="p">,</span> <span class="n">window_length</span><span class="p">,</span> <span class="n">dw</span><span class="p">,</span> <span class="n">lda</span><span class="p">,</span> <span class="n">vectorizer</span><span class="p">,</span> <span class="n">kernel_width</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+  <span class="c1"># create a dataframe with one row per word, ignoring punctuation</span>
+  <span class="n">punctuation</span> <span class="o">=</span> <span class="s1">&#39;?</span><span class="se">\&#39;</span><span class="s1">&quot;.!-!@#$%^&amp;*();,/\`~&#39;</span>
+  <span class="n">clean_conversation</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">punctuation</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">conversation</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span>
+  <span class="n">clean_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">c</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">clean_conversation</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;word&#39;</span><span class="p">},</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+  <span class="n">trajectory</span> <span class="o">=</span> <span class="n">topic_trajectory</span><span class="p">(</span><span class="n">clean_df</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">dw</span><span class="p">,</span> <span class="n">LDA</span><span class="p">,</span> <span class="n">cv</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">resample_and_smooth</span><span class="p">(</span><span class="n">trajectory</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="mi">25</span>          <span class="c1"># window length, in words</span>
+<span class="n">dw</span> <span class="o">=</span> <span class="mi">1</span>          <span class="c1"># window increment, in words</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>         <span class="c1"># number of timepoints in resampled conversation</span>
+<span class="n">s</span> <span class="o">=</span> <span class="mi">11</span>          <span class="c1"># smoothing kernel width (positive odd integer)</span>
+
+<span class="n">smooth_trajectory</span> <span class="o">=</span> <span class="n">trajectorize_conversation</span><span class="p">(</span><span class="n">conversation</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">dw</span><span class="p">,</span> <span class="n">LDA</span><span class="p">,</span> <span class="n">cv</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Plot the conversation&#39;s trajectory!</span>
+<span class="n">hyp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">smooth_trajectory</span><span class="p">,</span> <span class="s1">&#39;k-&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d684da24c8bc50c96b94ad5981151779c2fd9a333975b26bc2475b48f422d8ad.png" src="../_images/d684da24c8bc50c96b94ad5981151779c2fd9a333975b26bc2475b48f422d8ad.png" />
+</div>
+</div>
+<section id="suggested-follow-ups-questions-and-exercises">
+<h2>Suggested follow-ups questions and exercises<a class="headerlink" href="#suggested-follow-ups-questions-and-exercises" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>What does a conversation’s trajectory shape <em>mean</em>?</p></li>
+<li><p>How might you characterize whether successive conversations are related?</p></li>
+<li><p>How could you cluster conversations according to different properties:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Their conceptual content</p></li>
+<li><p>The ways they “unfold” over time (i.e., their trajectory shapes)</p></li>
+</ul>
+<ol class="arabic simple" start="4">
+<li><p>How might you characterize the ways different people talk?  Or how different sets of people converse?</p></li>
+</ol>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="interactive-agents">
+<h1>Interactive agents<a class="headerlink" href="#interactive-agents" title="Permalink to this heading">#</a></h1>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/ELIZA">ELIZA</a> is the earliest precursor to modern <a class="reference external" href="https://en.wikipedia.org/wiki/Chatbot">chatbot</a> programs, designed to carry out <a class="reference external" href="https://en.wikipedia.org/wiki/Natural_language_processing">natural language</a> conversations with human users in real time.  When Joseph Weizenbaum presented his <a class="reference external" href="https://www.dropbox.com/s/djldsm2jlgwvrxc/Weiz66.pdf">paper on ELIZA</a> in 1966, he characterized it as a demonstration that even very simple computer programs can be made to appear intelligent through clever tricks.  ELIZA works by applying a sequence of simple string manipulations to the user’s inputs that attempt to convert what the user says into a question that can be aimed back at the user.  There are no mechanisms for deep understanding or complex representations in the model.</p>
+<p>Whereas ELIZA is intended to create the <em>illusion</em> of understanding natural conversation through programming tricks, cutting-edge chatbot programs attempt to explicitly model the meaning underlying human-computer conversations.
+<a class="reference external" href="https://chat.openai.com/chat">ChatGPT</a>, <a class="reference external" href="https://you.com/search?q=who+are+you&amp;tbm=youchat&amp;cfr=chat">You/Chat</a>, <a class="reference external" href="https://www.bing.com/">Bing Chat</a>, <a class="reference external" href="https://bard.google.com/">Bard</a>, <a class="reference external" href="https://ai.meta.com/llama/">Llama 2</a> and other more modern chatbots are trained to represent meanings as feature vectors using text embedding models trained on enormous collections of documents.  Most modern chatbots are “predictive models” that use text in their training corpora to learn which letters, words, and phrases tend to follow from text provided in the user’s prompt.  Because these modern chatbots are trained on large document collections, they are able to produce responses that leverage “knowledge” (to use the term very loosely) about a wide variety of content.</p>
+<p>The inner workings of modern chatbots overlap heavily with modern text embedding models.  One of the best-performing chatbot designs today is the <a class="reference external" href="https://en.wikipedia.org/wiki/Generative_pre-trained_transformer">Generative Pretrained Transformer (GPT)</a>.  GPT models are essentially modified transformers that are tailor-made for applications like text completion, summarization, translation, and interation.  Whereas the “goal” of text embedding models is to derive vector representations of different concepts, chatbots often work by attempting to “predict” the next token in a sequence, given the previous context.</p>
+<section id="chatbot-demo-1-interactive-tutor">
+<h2>Chatbot demo 1: interactive “tutor”<a class="headerlink" href="#chatbot-demo-1-interactive-tutor" title="Permalink to this heading">#</a></h2>
+<p>Let’s “officially” meet <a class="reference external" href="https://github.com/ContextLab/chatify">Chatify</a> 🤖!  The <code class="docutils literal notranslate"><span class="pre">%%explain</span></code> magic command at the top of the next cell toggles a widget for getting some chatbot-based help in notebook-based tutorials like this one.  I’ve made up some demo code to get started.  Play around with entering different code (or use the <code class="docutils literal notranslate"><span class="pre">%%explain</span></code> command in other code cells in this notebook!).  You can get help understanding what the code does, receive debugging assistance, check your grasp of the core concepts, brainstorm project or business ideas related to the code, and more!  Chatify works using a set of built-in prompts that are sent to a third-party server running in the background.  The server runs a chatbot that processes the prompts and sends back a response to be displayed here.  Responses take a little while to generate, so you’ll need to wait a minute or so after pressing “submit request” to see a response.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">explain</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">chatbot_response</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="c1"># A simple predefined response, you can replace this with a more sophisticated model.</span>
+    <span class="k">return</span> <span class="s2">&quot;That&#39;s interesting. Tell me more.&quot;</span>
+
+<span class="k">def</span> <span class="nf">chat</span><span class="p">():</span>
+    <span class="n">user_messages</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">bot_messages</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Chatbot: Hi there! How can I help you today?&quot;</span><span class="p">)</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;You: &quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">user_input</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;exit&#39;</span><span class="p">:</span>
+            <span class="k">break</span>
+
+        <span class="n">user_messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">user_input</span><span class="p">))</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">chatbot_response</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
+        <span class="n">bot_messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="p">))</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Chatbot:&quot;</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+
+    <span class="n">plot_conversation</span><span class="p">(</span><span class="n">user_messages</span><span class="p">,</span> <span class="n">bot_messages</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">plot_conversation</span><span class="p">(</span><span class="n">user_lengths</span><span class="p">,</span> <span class="n">bot_lengths</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">user_lengths</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;User message length&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bot_lengths</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bot message length&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Message number&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of characters&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Length of messages over time&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">chat</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "b9146dafb26b47d2af2c4d3235e38b9a"}</script></div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="chatbot-demo-2-run-a-chatbot-locally">
+<h1>Chatbot demo 2: run a chatbot locally!<a class="headerlink" href="#chatbot-demo-2-run-a-chatbot-locally" title="Permalink to this heading">#</a></h1>
+<p>Modern chatbots require lots of computing power. But we can run a “mini” model even in a relatively modest machine, like the free Google Colab instance you might be running this tutorial on right now!</p>
+<p>We’ll use a variant of a pretrained and fine-tuned generative text model, called <a class="reference external" href="https://huggingface.co/meta-llama/Llama-2-7b-hf">Llama 2</a>.  Llama 2 is a generative pretrained transformer model (like ChatGPT), but the model size has been scaled down to minimize resource requirements.  Of course, a side effect is that sometimes the model produces lower-quality responses.</p>
+<p>The <a class="reference external" href="https://python.langchain.com/docs/get_started/introduction.html">LangChain</a> framework provides a set of convenient tools for working with a wide variety language models.  Here we’ll use LangChain to interact with a version of Llama 2 hosted on <a class="reference external" href="https://huggingface.co/TheBloke/Llama-2-7b-Chat-GGML">Hugging Face</a>.  Because LangChain is very genenral, assuming your machine has sufficient memory and disk space, you can swap out the model specified below with nearly any <a class="reference external" href="https://huggingface.co/models?pipeline_tag=text-generation&amp;sort=trending">generative text model on Hugging Face</a>!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Download and set up a model</span>
+
+<span class="c1"># download model weights</span>
+<span class="n">model</span> <span class="o">=</span> <span class="s1">&#39;TheBloke/Llama-2-7B-Chat-GGML&#39;</span>  <span class="c1"># can replace &quot;7B&quot; with either &quot;13B&quot; or &quot;70B&quot; in this line and the next if you have sufficient RAM</span>
+<span class="n">weights_fname</span> <span class="o">=</span> <span class="s1">&#39;llama-2-7b-chat.ggmlv3.q5_1.bin&#39;</span>
+<span class="n">model_path</span> <span class="o">=</span> <span class="n">hf_hub_download</span><span class="p">(</span><span class="n">repo_id</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">weights_fname</span><span class="p">)</span>
+
+<span class="c1"># initialize an instance of the model (max out Colab GPU resources)</span>
+<span class="n">llm</span> <span class="o">=</span> <span class="n">LlamaCpp</span><span class="p">(</span>
+    <span class="n">model_path</span><span class="o">=</span><span class="n">model_path</span><span class="p">,</span>
+    <span class="n">max_tokens</span><span class="o">=</span><span class="mi">2500</span><span class="p">,</span>
+    <span class="n">n_gpu_layers</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
+    <span class="n">n_batch</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Set up a prompt for querying the model</span>
+
+<span class="c1"># provide some context for the LLM (adjust this if you want!)</span>
+<span class="n">system_prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">You are an AI chatbot but you believe that you&#39;re a robot cat named CATBOT.</span>
+<span class="s2">Say meow, purr a lot, and indicate when you are doing cat or robot things</span>
+<span class="s2">whenever relevant. Bonus points for being extra silly and for using cat-themed</span>
+<span class="s2">and robot-themed emojis. Be standoffish, curt, and make only a vague effort to</span>
+<span class="s2">follow the user&#39;s requests.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">sys</span> <span class="o">=</span> <span class="n">SystemMessagePromptTemplate</span><span class="o">.</span><span class="n">from_template</span><span class="p">(</span><span class="n">system_prompt</span><span class="p">)</span>
+<span class="n">user_prompt</span> <span class="o">=</span> <span class="n">HumanMessagePromptTemplate</span><span class="o">.</span><span class="n">from_template</span><span class="p">(</span><span class="s1">&#39;USER: </span><span class="si">{text}</span><span class="se">\n</span><span class="s1">CATBOT: &#39;</span><span class="p">,</span> <span class="n">input_variables</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">])</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_messages</span><span class="p">([</span><span class="n">sys</span><span class="p">,</span> <span class="n">user_prompt</span><span class="p">])</span>
+<span class="n">chain</span> <span class="o">=</span> <span class="n">LLMChain</span><span class="p">(</span><span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span> <span class="n">llm</span><span class="o">=</span><span class="n">llm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Run the chatbot!</span>
+
+<span class="c1"># Disclaimer: this is likely to be incredibly slow if you&#39;re running it in Colab.</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CATBOT: Meow!! 🐱&quot;</span><span class="p">)</span>
+  <span class="nb">next</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;USER: &quot;</span><span class="p">)</span>
+
+  <span class="k">if</span> <span class="nb">next</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;exit&#39;</span><span class="p">,</span> <span class="s1">&#39;stop&#39;</span><span class="p">,</span> <span class="s1">&#39;goodbye&#39;</span><span class="p">,</span> <span class="s1">&#39;bye&#39;</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">]:</span>
+    <span class="k">break</span>
+
+  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;CATBOT: </span><span class="si">{</span><span class="n">chain</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="nb">next</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CATBOT: Meow!! 🐱
+USER: Can you help me learn to code in Python?
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="followup-things-to-explore-try">
+<h1>Followup things to explore/try<a class="headerlink" href="#followup-things-to-explore-try" title="Permalink to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Play around with the movie dialogue dataset.  Can you get a chatbot to make up alternative or extended conversations between the characters?</p></li>
+<li><p>You may want to swap out the “local” model with something faster. If you sign up for an <a class="reference external" href="https://openai.com/blog/openai-api">OpenAI API key</a>, you can swap out the <code class="docutils literal notranslate"><span class="pre">LlamaCpp</span></code>-based LLM for the following to get higher-quality responses from ChatGPT:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langchain.llms</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+
+<span class="n">llm</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span>
+  <span class="n">openai_api_key</span><span class="o">=&lt;</span><span class="n">PASTE</span> <span class="n">IN</span> <span class="n">YOUR</span> <span class="n">API</span> <span class="n">KEY</span> <span class="n">HERE</span><span class="o">&gt;</span><span class="p">,</span>
+  <span class="n">model_name</span><span class="o">=</span><span class="s1">&#39;gpt-3.5-turbo-16x&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>and then re-run the previous two cells.
+3. Can you figure out how to set up two <em>different</em> chatbots (perhaps initialized with different system prompts that reflect their unique goals, personalities, etc.) and then have them interact? You can analyze the resulting conversations using the text embedding models described above!</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="generative_faces.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">PsychInsight: A high-level API for creating and epxloring novel face stimuli</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Contributing.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Contributing</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Models of text and language</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background-and-overview">Background and overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natural-language-processing-of-movie-conversations">Natural Language Processing of movie conversations?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#meet-your-friendly-personalized-robo-ta">Meet your friendly personalized Robo-TA 🤖!</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#text-embedding-models">Text embedding models</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#text-embedding-example-1-latent-dirichlet-allocation">Text embedding example 1: Latent Dirichlet Allocation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#text-embedding-example-2-deep-embeddings">Text embedding example 2: deep embeddings</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#within-document-dynamics">Within-document “dynamics”</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#suggested-follow-ups-questions-and-exercises">Suggested follow-ups questions and exercises</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-agents">Interactive agents</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatbot-demo-1-interactive-tutor">Chatbot demo 1: interactive “tutor”</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chatbot-demo-2-run-a-chatbot-locally">Chatbot demo 2: run a chatbot locally!</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#followup-things-to-explore-try">Followup things to explore/try</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Luke Chang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  Created by <a href="http://www.lukejchang.com/">Luke Chang</a> using <a href="https://jupyterbook.org/">Jupyter Book</a> and supported by NSF (CAREER Award 1848370) and the <a href="https://www.interactingminds.com/">Consortium for Interacting Minds</a>. Please post any questions on our <a href="https://www.askpbs.org/c/mind-summer-school/">Discourse Page</a>.
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
