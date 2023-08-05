@@ -1,0 +1,1941 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Introduction to programming artificial neural networks &#8212; MIND2023 Interacting Minds</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/ANN_tutorial';</script>
+    <link rel="canonical" href="http://tutorials.mindsummerschool.com/content/ANN_tutorial.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Models of text and language" href="models_of_text_and_language.html" />
+    <link rel="prev" title="Synchrony &amp; Alignment" href="Intersubject_Correlation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/mind_logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/mind_logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Overview</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Contributors.html">Contributors</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Download_Data.html">Download Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Software.html">Software Installation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Background Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_Introduction_to_Programming.html">Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_Introduction_to_Pandas.html">Introduction to Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_Introduction_to_Plotting.html">Introduction to Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_Introduction_to_Neuroimaging_Data.html">Introduction to Neuroimaging Data</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://dartbrains.org/">Dartbrains Neuroimaging Analysis Course</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://naturalistic-data.org">Naturalistic Data Analysis Course</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analysis Tutorials</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Functional_Alignment.html">Functional Alignment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Intersubject_Correlation.html">Synchrony &amp; Alignment</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to programming artificial neural networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models_of_text_and_language.html">Models of text and language</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="generative_faces.html">PsychInsight: A high-level API for creating and epxloring novel face stimuli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timecorr.html">Dynamic Connectivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypertools.html">Visualizing High Dimensional Data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contributing Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/mind-tutorials/mind_book">GitHub Repository</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/mind-tutorials/mind_book/master?urlpath=tree/content/ANN_tutorial.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/mind-tutorials/mind_book/blob/master/content/ANN_tutorial.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/mind-tutorials/mind_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mind-tutorials/mind_book/edit/master/content/ANN_tutorial.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mind-tutorials/mind_book/issues/new?title=Issue%20on%20page%20%2Fcontent/ANN_tutorial.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/content/ANN_tutorial.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction to programming artificial neural networks</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-for-methods-in-neuroscience-at-dartmouth-mind-2023">Tutorial for Methods In Neuroscience at Dartmouth (MIND) 2023</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-packages">Import packages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#detect-and-set-hardware-device">Detect and set hardware device</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-data">Simulate data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-linear-regression">Simple linear regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nonlinear-regression">Nonlinear regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trying-the-linear-model-on-nonlinear-data">Trying the linear model on nonlinear data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shallow-wide-nonlinear-ann">Shallow/wide nonlinear ANN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deep-neural-network">Deep neural network</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bells-and-whistles">Bells and whistles</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next steps</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-layer-connectivity-patterns">Other layer connectivity patterns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">Applications</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-resources">Learning resources</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-programming-artificial-neural-networks">
+<h1>Introduction to programming artificial neural networks<a class="headerlink" href="#introduction-to-programming-artificial-neural-networks" title="Permalink to this heading">#</a></h1>
+<section id="tutorial-for-methods-in-neuroscience-at-dartmouth-mind-2023">
+<h2>Tutorial for Methods In Neuroscience at Dartmouth (<a class="reference external" href="http://mindsummerschool.org/">MIND</a>) 2023<a class="headerlink" href="#tutorial-for-methods-in-neuroscience-at-dartmouth-mind-2023" title="Permalink to this heading">#</a></h2>
+<p>By <a class="reference external" href="http://markallenthornton.com/">Mark A. Thornton</a></p>
+<p>This tutorial offers an introduction to programming your own customized artificial neural network (ANN) for the first time. It is based on the popular ANN programming framework <a class="reference external" href="https://pytorch.org/">PyTorch</a>. You will build up an ANN to perform regression, starting from a very simple network and working up step-by-step to a more complex one.</p>
+<p>This notebook focuses on the implementation of ANNs. If you’re interested in a complementary conceptual introduction to ANNs, their potential uses in social neuroscience, and their limitations, please consider <a class="reference external" href="https://psyarxiv.com/fr4cb">my preprint</a> with <a class="reference external" href="http://beausievers.com/">Beau Sievers</a>.</p>
+<p>The figure below, created by <a class="reference external" href="https://pbs.dartmouth.edu/people/lindsey-j-tepfer">Lindsey Tepfer</a> for the aforementioned preprint, illustrates the (A) general structure of ANNs, (B) the internal structure of individual units, which approximate generalized linear models, and (C) the training process using stochastic gradient descent via backpropagation. The terminology in this figure will reappear throughout the tutorial.</p>
+<p><img alt="" src="https://mysocialbrain.org/misc/data/ann_tutorial/Fig1_DS_hires_top.png" /></p>
+</section>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this heading">#</a></h2>
+<p>This section includes the import statements for the packages/functions we’ll need here, detection of the available hardware for ANN fitting, and code to simulate the artificial data we’ll be using.</p>
+<section id="import-packages">
+<h3>Import packages<a class="headerlink" href="#import-packages" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span><span class="p">,</span> <span class="n">TensorDataset</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span><span class="p">,</span> <span class="n">mean_squared_error</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="detect-and-set-hardware-device">
+<h3>Detect and set hardware device<a class="headerlink" href="#detect-and-set-hardware-device" title="Permalink to this heading">#</a></h3>
+<p>Depending on where you run your notebook, you may be able to take advantage of different hardware. If a cuda-enable graphics card is available, this will be preferred. Mac chipsets (MPS) and traditional processors (CPU) are the fallback options. On Colab, you may want to change your runtime type to take advantage of the GPU runtimes they offer.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">device</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">&quot;cuda&quot;</span>
+    <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
+    <span class="k">else</span> <span class="s2">&quot;mps&quot;</span>
+    <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">mps</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
+    <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using </span><span class="si">{</span><span class="n">device</span><span class="si">}</span><span class="s2"> device&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using cuda device
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="simulate-data">
+<h3>Simulate data<a class="headerlink" href="#simulate-data" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># set random seeds</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># pytorch&#39;s random seed</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># numpy&#39;s random seed</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># linear relationship</span>
+
+<span class="c1"># set sample sizes</span>
+<span class="n">ntrain</span> <span class="o">=</span> <span class="mi">100000</span> <span class="c1"># training</span>
+<span class="n">ntest</span> <span class="o">=</span> <span class="mi">1000</span>    <span class="c1"># testing</span>
+<span class="n">nval</span> <span class="o">=</span> <span class="mi">10000</span>    <span class="c1"># validation</span>
+
+<span class="c1"># the x-variable is drawn from a standard normal distribution</span>
+<span class="n">x_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">ntrain</span><span class="p">)</span>
+<span class="n">x_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">ntest</span><span class="p">)</span>
+<span class="n">x_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">nval</span><span class="p">)</span>
+
+<span class="c1"># this y-variable is a linear function of the x-variable</span>
+<span class="c1"># a bit a Gaussian noise is added, as well as a constant slope and intercept</span>
+<span class="n">y_lin_train</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">*</span><span class="mf">1.5</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">.1</span><span class="p">,</span><span class="n">ntrain</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">y_lin_test</span> <span class="o">=</span> <span class="n">x_test</span><span class="o">*</span><span class="mf">1.5</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">.1</span><span class="p">,</span><span class="n">ntest</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># nonlinear relationship</span>
+<span class="c1"># the second y-variable is a quadratic function of the x-variable</span>
+<span class="n">y_non_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">.1</span><span class="p">,</span><span class="n">ntrain</span><span class="p">)</span>
+<span class="n">y_non_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">.1</span><span class="p">,</span><span class="n">ntest</span><span class="p">)</span>
+<span class="n">y_non_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">x_val</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">.1</span><span class="p">,</span><span class="n">nval</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># reshape so as to avoid confusing pytorch with 1d data</span>
+<span class="n">x_train</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">ntrain</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">y_lin_train</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">ntrain</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">y_non_train</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">ntrain</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">x_test</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">ntest</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">y_lin_test</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">ntest</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">y_non_test</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">ntest</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">x_val</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">nval</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">y_non_val</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">nval</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot simulated (training) data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span><span class="n">y_lin_train</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mf">.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span><span class="n">y_non_train</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mf">.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/49f17357216535500f4fa6cfa31a3e046df8706b3e589ea2635ca994ab0d43af.png" src="../_images/49f17357216535500f4fa6cfa31a3e046df8706b3e589ea2635ca994ab0d43af.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="simple-linear-regression">
+<h2>Simple linear regression<a class="headerlink" href="#simple-linear-regression" title="Permalink to this heading">#</a></h2>
+<p>We’ll begin by showing how ANNs can approximate simple (OLS) regression. In fact, ANNs can approximate nearly all of the modeling techniques in the typical psych/neuro toolkit, ranging from this simple case up through things like factor analysis and beyond.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define model with a single linear unit which takes one input</span>
+<span class="n">model1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define loss (error) function as mean square error</span>
+<span class="c1"># this is similar to ordinary least squares regression</span>
+<span class="n">loss</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define optimizers as stochastic gradient descent (SGD)</span>
+<span class="c1"># feed in parameters of the model to be optimized and the learning rate</span>
+<span class="c1"># (in most cases, we would probably use a much lower learning rate)</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model1</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span><span class="n">lr</span><span class="o">=</span><span class="mf">.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s train the model:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nepoch</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># epochs = how many times the model sees the dataset</span>
+<span class="c1"># note that we&#39;re not actually using the GPU yet - see the next example for that</span>
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nepoch</span><span class="p">):</span>
+    <span class="c1"># convert inputs and targets to torch tensors</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">x_train</span><span class="p">))</span>
+    <span class="n">targets</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">y_lin_train</span><span class="p">))</span>
+
+    <span class="c1"># propagate activity forward through network to make prediction</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">model1</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+
+    <span class="c1"># compute loss (error) of predictions</span>
+    <span class="n">curloss</span> <span class="o">=</span> <span class="n">loss</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span>
+
+    <span class="c1"># backpropagate errors to change weights and biases via SGD</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+    <span class="n">curloss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+    <span class="c1"># print</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Epoch [</span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">], Loss: </span><span class="si">{:.4f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">nepoch</span><span class="p">,</span> <span class="n">curloss</span><span class="o">.</span><span class="n">item</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch [1/10], Loss: 2.4881
+Epoch [2/10], Loss: 0.0100
+Epoch [3/10], Loss: 0.0100
+Epoch [4/10], Loss: 0.0100
+Epoch [5/10], Loss: 0.0100
+Epoch [6/10], Loss: 0.0100
+Epoch [7/10], Loss: 0.0100
+Epoch [8/10], Loss: 0.0100
+Epoch [9/10], Loss: 0.0100
+Epoch [10/10], Loss: 0.0100
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we’ve trained the model, let’s take a look at its out-of-sample performance on our simulated test set. To do this, we’ll make predictions for the test set, and compare them to the actual test values using R<sup>2</sup> and RMSE, as well as plotting them against one another. As you’ll see, the R<sup>2</sup> is near perfect, and the RMSE is just about equal to the SD of the noise we injected when simulating the data. In other words, the model is performing as well as it could.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the relationship between predicted and actual test values</span>
+<span class="n">ypred</span> <span class="o">=</span> <span class="n">model1</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">x_test</span><span class="p">)))</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ypred</span><span class="p">,</span><span class="n">y_lin_test</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mf">.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Predictions&quot;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Actual values&quot;</span><span class="p">);</span>
+
+<span class="c1"># print out performance metrics</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r2_score</span><span class="p">(</span><span class="n">y_lin_test</span><span class="p">,</span><span class="n">ypred</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_lin_test</span><span class="p">,</span><span class="n">ypred</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9957496739688491
+0.09758071680706164
+</pre></div>
+</div>
+<img alt="../_images/19698eb18728947ba898b1361f4da921e51b7dd351d4900cb5cca9982b049fb6.png" src="../_images/19698eb18728947ba898b1361f4da921e51b7dd351d4900cb5cca9982b049fb6.png" />
+</div>
+</div>
+<p>Now let’s compare the results to an ordinary least squares (OLS) regression - the more traditional way to model this sort of data in psychology and neuroscience. First, we’ll print out the weight and bias of the sole unit in the neural network, and then fit and print the equivalent parameters (slope and intercept) of the OLS regression, using the statsmodels package.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># print out weight and bias parameters</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">model1</span><span class="o">.</span><span class="n">named_parameters</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">param</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">param</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>weight tensor([[1.5001]])
+bias tensor([1.0004])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># observe that a traditional OLS regression learns the same parameter values</span>
+<span class="n">ols</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y_lin_train</span><span class="p">,</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">x_train</span><span class="p">))</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">ols</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      y   R-squared:                       0.996
+Model:                            OLS   Adj. R-squared:                  0.996
+Method:                 Least Squares   F-statistic:                 2.242e+07
+Date:                Fri, 04 Aug 2023   Prob (F-statistic):               0.00
+Time:                        03:48:42   Log-Likelihood:                 88450.
+No. Observations:              100000   AIC:                        -1.769e+05
+Df Residuals:                   99998   BIC:                        -1.769e+05
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          1.0004      0.000   3166.125      0.000       1.000       1.001
+x1             1.5001      0.000   4735.113      0.000       1.499       1.501
+==============================================================================
+Omnibus:                        0.830   Durbin-Watson:                   2.004
+Prob(Omnibus):                  0.660   Jarque-Bera (JB):                0.840
+Skew:                           0.006   Prob(JB):                        0.657
+Kurtosis:                       2.991   Cond. No.                         1.00
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see, despite the different implementation, an ANN can yield effectively identical results as familiar OLS regression, under idealized circumstances.</p>
+</section>
+<section id="nonlinear-regression">
+<h2>Nonlinear regression<a class="headerlink" href="#nonlinear-regression" title="Permalink to this heading">#</a></h2>
+<p>In the previous section, we saw how an ANN can be used to approximate a simple linear regression. However, one of the main advantages of ANNs is that they can model highly nonlinear relationships. In this section, we’ll start to see how that can be achieved.</p>
+<section id="trying-the-linear-model-on-nonlinear-data">
+<h3>Trying the linear model on nonlinear data<a class="headerlink" href="#trying-the-linear-model-on-nonlinear-data" title="Permalink to this heading">#</a></h3>
+<p>First, we will try to fit our simulated nonlinear (bivariate quadratic) data using the same model architecture we tried in this last section. This time we’ll code up that model in a different way (i.e., a more object-oriented approach, instead of the more imperative approach above).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define model architecture</span>
+<span class="k">class</span> <span class="nc">SimpleLinearANN</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="c1"># the &quot;Sequential&quot; class offers a convenient way to fit many simple ANNs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layer_stack</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_stack</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pred</span>
+
+<span class="n">model2</span> <span class="o">=</span> <span class="n">SimpleLinearANN</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SimpleLinearANN(
+  (layer_stack): Sequential(
+    (0): Linear(in_features=1, out_features=1, bias=True)
+  )
+)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ll also define our training and testing more functionally now, so that we can reuse these functions later.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define training function</span>
+<span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">dataloader</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">loss_fn</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">):</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataloader</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">batch</span><span class="p">,</span> <span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dataloader</span><span class="p">):</span>
+        <span class="c1"># note that we&#39;re actually using the GPU here</span>
+        <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="n">y</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+        <span class="c1"># Compute prediction error</span>
+        <span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+        <span class="c1"># Backpropagation</span>
+        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">batch</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">loss</span><span class="p">,</span> <span class="n">current</span> <span class="o">=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="p">(</span><span class="n">batch</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;loss: </span><span class="si">{</span><span class="n">loss</span><span class="si">:</span><span class="s2">&gt;7f</span><span class="si">}</span><span class="s2">  [</span><span class="si">{</span><span class="n">current</span><span class="si">:</span><span class="s2">&gt;5d</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">size</span><span class="si">:</span><span class="s2">&gt;5d</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define test function</span>
+<span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">dataloader</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">loss_fn</span><span class="p">):</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataloader</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
+    <span class="n">num_batches</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataloader</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+    <span class="n">test_loss</span><span class="p">,</span> <span class="n">r2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span> <span class="c1"># evaluate loss (MSE, and R^2)</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">dataloader</span><span class="p">:</span>
+            <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="n">y</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+            <span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="n">test_loss</span> <span class="o">+=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="n">r2</span> <span class="o">+=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y</span><span class="o">-</span><span class="n">pred</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span> <span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">test_loss</span> <span class="o">/=</span> <span class="n">num_batches</span>
+    <span class="n">r2</span> <span class="o">/=</span> <span class="n">num_batches</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test performance: </span><span class="se">\n</span><span class="s2"> R^2: </span><span class="si">{</span><span class="n">r2</span><span class="si">:</span><span class="s2">&gt;8f</span><span class="si">}</span><span class="s2">, RMSE: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">test_loss</span><span class="p">)</span><span class="si">:</span><span class="s2">&gt;8f</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">r2</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">test_loss</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we’ll put our simulated data into pytorch’s dataloader - an iterable class that supports batching (breaking up the overall dataset into smaller batches), and shuffling (randomizing the order of that data), among other features. Generally it’s a good idea to choose a batch size that is a power of 2 (for memory efficiency), and to shuffle your data to prevent catastrophic forgetting that can come from showing the model a bunch of similar examples in a row.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># turn our numpy variables into pytorch datasets</span>
+<span class="n">xtrain_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">x_train</span><span class="p">))</span>
+<span class="n">ytrain_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">y_non_train</span><span class="p">))</span>
+<span class="n">nonlinear_training_data</span> <span class="o">=</span> <span class="n">TensorDataset</span><span class="p">(</span><span class="n">xtrain_tensor</span><span class="p">,</span> <span class="n">ytrain_tensor</span><span class="p">)</span>
+
+<span class="n">xtest_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">x_test</span><span class="p">))</span>
+<span class="n">ytest_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">y_non_test</span><span class="p">))</span>
+<span class="n">nonlinear_testing_data</span> <span class="o">=</span> <span class="n">TensorDataset</span><span class="p">(</span><span class="n">xtest_tensor</span><span class="p">,</span> <span class="n">ytest_tensor</span><span class="p">)</span>
+
+<span class="n">xval_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">x_val</span><span class="p">))</span>
+<span class="n">yval_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">y_non_val</span><span class="p">))</span>
+<span class="n">val_data</span> <span class="o">=</span> <span class="n">TensorDataset</span><span class="p">(</span><span class="n">xval_tensor</span><span class="p">,</span> <span class="n">yval_tensor</span><span class="p">)</span>
+
+<span class="c1"># put the datasets into the dataloader</span>
+<span class="n">train_dataloader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">nonlinear_training_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">test_dataloader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">nonlinear_testing_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">val_dataloader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">val_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># new we&#39;ll train the model (note that loss does not seem steadily to improve)</span>
+<span class="n">loss</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">()</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model2</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span><span class="n">lr</span><span class="o">=</span><span class="mf">.5</span><span class="p">)</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Epoch </span><span class="si">{</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="se">\n</span><span class="s2">-------------------------------&quot;</span><span class="p">)</span>
+    <span class="n">train</span><span class="p">(</span><span class="n">train_dataloader</span><span class="p">,</span> <span class="n">model2</span><span class="p">,</span> <span class="n">loss</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1
+-------------------------------
+loss: 3.297604  [   64/100000]
+loss: 2.270447  [ 6464/100000]
+loss: 2.475495  [12864/100000]
+loss: 2.216384  [19264/100000]
+loss: 2.483925  [25664/100000]
+loss: 3.111267  [32064/100000]
+loss: 2.170219  [38464/100000]
+loss: 3.388379  [44864/100000]
+loss: 4.701067  [51264/100000]
+loss: 1.805016  [57664/100000]
+loss: 1.798295  [64064/100000]
+loss: 2.880607  [70464/100000]
+loss: 1.875021  [76864/100000]
+loss: 1.566702  [83264/100000]
+loss: 1.444066  [89664/100000]
+loss: 3.873803  [96064/100000]
+Epoch 2
+-------------------------------
+loss: 1.891131  [   64/100000]
+loss: 1.695512  [ 6464/100000]
+loss: 1.589921  [12864/100000]
+loss: 1.268939  [19264/100000]
+loss: 1.167627  [25664/100000]
+loss: 1.327818  [32064/100000]
+loss: 1.701994  [38464/100000]
+loss: 0.960532  [44864/100000]
+loss: 1.701208  [51264/100000]
+loss: 5.352643  [57664/100000]
+loss: 1.198715  [64064/100000]
+loss: 2.584759  [70464/100000]
+loss: 2.101575  [76864/100000]
+loss: 2.096920  [83264/100000]
+loss: 3.844053  [89664/100000]
+loss: 2.158092  [96064/100000]
+Epoch 3
+-------------------------------
+loss: 2.072096  [   64/100000]
+loss: 2.084110  [ 6464/100000]
+loss: 2.557325  [12864/100000]
+loss: 1.547599  [19264/100000]
+loss: 1.849058  [25664/100000]
+loss: 2.230387  [32064/100000]
+loss: 0.976333  [38464/100000]
+loss: 0.971154  [44864/100000]
+loss: 2.253049  [51264/100000]
+loss: 1.980433  [57664/100000]
+loss: 1.413823  [64064/100000]
+loss: 3.303815  [70464/100000]
+loss: 3.310146  [76864/100000]
+loss: 1.572646  [83264/100000]
+loss: 2.585217  [89664/100000]
+loss: 2.679968  [96064/100000]
+Done!
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we can see below, the performance of the linear model is poor, and it is not capturing the nonlinear relationship in the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># performance metrics</span>
+<span class="n">perf</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">test_dataloader</span><span class="p">,</span> <span class="n">model2</span><span class="p">,</span> <span class="n">loss</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test performance: 
+ R^2: 0.300736, RMSE: 1.491297 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># plotting actual values vs. predictions</span>
+<span class="n">ypred</span> <span class="o">=</span> <span class="n">model2</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">x_test</span><span class="p">))</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">))</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ypred</span><span class="p">,</span><span class="n">y_non_test</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mf">.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Predictions&quot;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Actual values&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/9bb3c1fd34450373ed53a96ba43f15602db1f33aa786b50d6918d3b0e272491d.png" src="../_images/9bb3c1fd34450373ed53a96ba43f15602db1f33aa786b50d6918d3b0e272491d.png" />
+</div>
+</div>
+</section>
+<section id="shallow-wide-nonlinear-ann">
+<h3>Shallow/wide nonlinear ANN<a class="headerlink" href="#shallow-wide-nonlinear-ann" title="Permalink to this heading">#</a></h3>
+<p>As we’ve seen, linear regression can’t capture a nonlinear relationship. The traditional approach to dealiung with this would be to do some manual feature engineering, like creating a quadratic term by multiplying our “x” by itself. This approach would actually work fine with the simulated data we’re playing with here. However, it does not scale up well to datasets with more variables and more complex nonlinearities. A major part of the appeal of ANNs is that - under the right circumstances - they can learn optimal nonlinear mappings between inputs and outputs for us.</p>
+<p>Most of the ANNs you’ll see making news these days are “deep” neural networks. The deep in this phrase refers to stacking a large number of layers on top of each other. However, before we do that, it’s worth taking a look at “shallow” neural networks. Shallow networks can actually do everything that deep nets can do - in principle. In practice, they tend to do this in a different way, that is <a class="reference external" href="https://ojs.aaai.org/index.php/AAAI/article/view/10913/10772">often less than ideal</a>. Specifically, shallow networks are memorization machines. They learn many simple local approximations to the relationship between inputs and outputs. With enough capacity, they can memorize an arbitrarily complex relationship, making them universal function approximators. Let’s see how this works! Below we’ll train a shallow ANN with many more units, and a nonlinear activation function (<a class="reference external" href="https://en.wikipedia.org/wiki/Rectifier_(neural_networks)">ReLU</a> - probably the most popular nonlinear activation function for ANNs).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define model architecture</span>
+<span class="k">class</span> <span class="nc">ShallowWideANN</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layer_stack</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1000</span><span class="p">),</span>  <span class="c1">## layer with 1000 units!</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>      <span class="c1">## apply a nonlinear activation function</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>      <span class="c1">## single linear output</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_stack</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pred</span>
+
+<span class="n">model3</span> <span class="o">=</span> <span class="n">ShallowWideANN</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ShallowWideANN(
+  (layer_stack): Sequential(
+    (0): Linear(in_features=1, out_features=1000, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=1000, out_features=1, bias=True)
+  )
+)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># new we&#39;ll train the model</span>
+<span class="c1"># note that we&#39;ve tuned down the learning rate</span>
+<span class="n">loss</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">()</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model3</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span><span class="n">lr</span><span class="o">=</span><span class="mf">.001</span><span class="p">)</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Epoch </span><span class="si">{</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="se">\n</span><span class="s2">-------------------------------&quot;</span><span class="p">)</span>
+    <span class="n">train</span><span class="p">(</span><span class="n">train_dataloader</span><span class="p">,</span> <span class="n">model3</span><span class="p">,</span> <span class="n">loss</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1
+-------------------------------
+loss: 2.869074  [   64/100000]
+loss: 0.120316  [ 6464/100000]
+loss: 0.041936  [12864/100000]
+loss: 0.037916  [19264/100000]
+loss: 0.028931  [25664/100000]
+loss: 0.040988  [32064/100000]
+loss: 0.178121  [38464/100000]
+loss: 0.031798  [44864/100000]
+loss: 0.067478  [51264/100000]
+loss: 0.031456  [57664/100000]
+loss: 0.021962  [64064/100000]
+loss: 0.018875  [70464/100000]
+loss: 0.023422  [76864/100000]
+loss: 0.053598  [83264/100000]
+loss: 0.023415  [89664/100000]
+loss: 0.033236  [96064/100000]
+Epoch 2
+-------------------------------
+loss: 0.016946  [   64/100000]
+loss: 0.024055  [ 6464/100000]
+loss: 0.046232  [12864/100000]
+loss: 0.016391  [19264/100000]
+loss: 0.019041  [25664/100000]
+loss: 0.017909  [32064/100000]
+loss: 0.016895  [38464/100000]
+loss: 0.022496  [44864/100000]
+loss: 0.050606  [51264/100000]
+loss: 0.016962  [57664/100000]
+loss: 0.020621  [64064/100000]
+loss: 0.017214  [70464/100000]
+loss: 0.021813  [76864/100000]
+loss: 0.025850  [83264/100000]
+loss: 0.013514  [89664/100000]
+loss: 0.026187  [96064/100000]
+Epoch 3
+-------------------------------
+loss: 0.021621  [   64/100000]
+loss: 0.015872  [ 6464/100000]
+loss: 0.014883  [12864/100000]
+loss: 0.022556  [19264/100000]
+loss: 0.016457  [25664/100000]
+loss: 0.013740  [32064/100000]
+loss: 0.019121  [38464/100000]
+loss: 0.018989  [44864/100000]
+loss: 0.034832  [51264/100000]
+loss: 0.024770  [57664/100000]
+loss: 0.013531  [64064/100000]
+loss: 0.013870  [70464/100000]
+loss: 0.018242  [76864/100000]
+loss: 0.182599  [83264/100000]
+loss: 0.021299  [89664/100000]
+loss: 0.020903  [96064/100000]
+Done!
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># performance metrics</span>
+<span class="c1"># the shallow network is doing quite well!</span>
+<span class="n">perf</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">test_dataloader</span><span class="p">,</span> <span class="n">model3</span><span class="p">,</span> <span class="n">loss</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test performance: 
+ R^2: 0.990787, RMSE: 0.171964 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># plotting actual values vs. predictions</span>
+<span class="n">ypred</span> <span class="o">=</span> <span class="n">model3</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">x_test</span><span class="p">))</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">))</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ypred</span><span class="p">,</span><span class="n">y_non_test</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mf">.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Predictions&quot;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Actual values&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/6494526c7504f049437a970edabc08f407192d305ac44ef0839ed8f4f72331d9.png" src="../_images/6494526c7504f049437a970edabc08f407192d305ac44ef0839ed8f4f72331d9.png" />
+</div>
+</div>
+<p>As you can see, the shallow network has learned a pretty good approximation of the nonlinear relationship in our data, just by memorizing small bits of it in each unit. The results here aren’t perfect, but with infinite data and infinite units, a shallow network can get arbitrarily close to perfection. In our more mundane world of limited data and models, deep neural networks typically offer a better solution.</p>
+</section>
+<section id="deep-neural-network">
+<h3>Deep neural network<a class="headerlink" href="#deep-neural-network" title="Permalink to this heading">#</a></h3>
+<p>In the example below, we’ll use far fewer units to achieve similar performance, via a deep neural network. This network features 5 ReLU layers, with units decreasing in power of two. The final layer is a single linear unit, as in previous cases. An important addition here is batch normalization after each ReLU activation. Batch normalization is basically like z-scoring the data. This is really helpful to prevent what’s known as the “exploding gradient” problem. Basically, nonlinear transformations have the potential to make some numbers really huge (or tiny) and this can cause problems for numerical computing with float point representations. Batch normalization helps to mitigate this problem, serving as a sort of regularization that improves training.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define model architecture</span>
+<span class="k">class</span> <span class="nc">DeepANN</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layer_stack</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">32</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">32</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span><span class="mi">16</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_stack</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pred</span>
+
+<span class="n">model4</span> <span class="o">=</span> <span class="n">DeepANN</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DeepANN(
+  (layer_stack): Sequential(
+    (0): Linear(in_features=1, out_features=32, bias=True)
+    (1): ReLU()
+    (2): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (3): Linear(in_features=32, out_features=16, bias=True)
+    (4): ReLU()
+    (5): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Linear(in_features=16, out_features=8, bias=True)
+    (7): ReLU()
+    (8): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (9): Linear(in_features=8, out_features=4, bias=True)
+    (10): ReLU()
+    (11): BatchNorm1d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Linear(in_features=4, out_features=2, bias=True)
+    (13): ReLU()
+    (14): BatchNorm1d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (15): Linear(in_features=2, out_features=1, bias=True)
+  )
+)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># new we&#39;ll train the model</span>
+<span class="n">loss</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">()</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model4</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span><span class="n">lr</span><span class="o">=</span><span class="mf">.01</span><span class="p">)</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Epoch </span><span class="si">{</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="se">\n</span><span class="s2">-------------------------------&quot;</span><span class="p">)</span>
+    <span class="n">train</span><span class="p">(</span><span class="n">train_dataloader</span><span class="p">,</span> <span class="n">model4</span><span class="p">,</span> <span class="n">loss</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1
+-------------------------------
+loss: 4.667707  [   64/100000]
+loss: 0.989088  [ 6464/100000]
+loss: 0.216513  [12864/100000]
+loss: 0.264145  [19264/100000]
+loss: 0.306660  [25664/100000]
+loss: 0.456342  [32064/100000]
+loss: 0.057279  [38464/100000]
+loss: 0.060745  [44864/100000]
+loss: 0.394866  [51264/100000]
+loss: 0.418425  [57664/100000]
+loss: 0.314052  [64064/100000]
+loss: 0.173316  [70464/100000]
+loss: 0.039098  [76864/100000]
+loss: 0.173622  [83264/100000]
+loss: 0.153746  [89664/100000]
+loss: 0.228229  [96064/100000]
+Epoch 2
+-------------------------------
+loss: 0.071922  [   64/100000]
+loss: 0.055156  [ 6464/100000]
+loss: 0.248226  [12864/100000]
+loss: 0.049417  [19264/100000]
+loss: 0.040127  [25664/100000]
+loss: 0.057625  [32064/100000]
+loss: 0.714862  [38464/100000]
+loss: 0.200428  [44864/100000]
+loss: 0.236930  [51264/100000]
+loss: 0.031537  [57664/100000]
+loss: 0.179619  [64064/100000]
+loss: 0.115763  [70464/100000]
+loss: 0.201975  [76864/100000]
+loss: 0.044374  [83264/100000]
+loss: 0.070829  [89664/100000]
+loss: 0.019935  [96064/100000]
+Epoch 3
+-------------------------------
+loss: 0.119832  [   64/100000]
+loss: 0.057674  [ 6464/100000]
+loss: 0.081795  [12864/100000]
+loss: 0.079885  [19264/100000]
+loss: 0.036620  [25664/100000]
+loss: 0.088968  [32064/100000]
+loss: 0.167877  [38464/100000]
+loss: 0.203338  [44864/100000]
+loss: 0.018583  [51264/100000]
+loss: 0.209267  [57664/100000]
+loss: 0.175974  [64064/100000]
+loss: 0.060453  [70464/100000]
+loss: 0.039461  [76864/100000]
+loss: 0.105169  [83264/100000]
+loss: 0.085562  [89664/100000]
+loss: 0.035103  [96064/100000]
+Done!
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># performance metrics</span>
+<span class="n">perf</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">test_dataloader</span><span class="p">,</span> <span class="n">model4</span><span class="p">,</span> <span class="n">loss</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test performance: 
+ R^2: 0.980514, RMSE: 0.292389 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># plotting actual values vs. predictions</span>
+<span class="n">ypred</span> <span class="o">=</span> <span class="n">model4</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">x_test</span><span class="p">))</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">))</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ypred</span><span class="p">,</span><span class="n">y_non_test</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mf">.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Predictions&quot;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Actual values&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/633e65cd5e8aa1577b26df9df4e2828b89d8436563728e3f18ed03ba8ca2391b.png" src="../_images/633e65cd5e8aa1577b26df9df4e2828b89d8436563728e3f18ed03ba8ca2391b.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute the number of trainable parameters in shallow and deep net</span>
+<span class="n">m3p</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">model3</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span>
+<span class="n">m4p</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">model4</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shallow net parameter number: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">m3p</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Deep net parameter number: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">m4p</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shallow net parameter number: 3001
+Deep net parameter number: 901
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see, the deep net has achieved similar performance to the shallow network, with only a fraction of the parameters!</p>
+</section>
+<section id="bells-and-whistles">
+<h3>Bells and whistles<a class="headerlink" href="#bells-and-whistles" title="Permalink to this heading">#</a></h3>
+<p>The deep net we used in the previous example was quite “bare bones” by contemporary standards. In practice, most deep nets rely on a variety of other features to improve their performance. Showcasing all of these features is beyond the scope of this tutorial, but the example below demonstrates a few popular examples, including:</p>
+<ul class="simple">
+<li><p><b>Skip-layer connections</b>: In the most prototypical case, each layer in an ANN is connected only to the adjacent layers (e.g., layer 2 is connected to layer 1 and layer 3). This is known as a sequential structure, and the sequential class in pytorch makes this very convenient. However, some of the most important milestones in deep learning have been achieved by abandoning this simple structure. For example, resnets (residual networks) are an  architecture that allowed computer vision to equal humans in tasks like object identification. These networks rely on connections that skip layers. The network below demonstrates this: in addition to receiving input from the previous layer, the final outputs here also receive input from the first layer. The potential of the nn.Module class extends well beyond this too: it can be used to stitch together different ANNs performing different tasks in different ways.</p></li>
+<li><p><b>Alternate activation functions</b>: Although ReLU is probably the most popular default choice of nonlinear activation function, there are many options to choose from, and some may be better suited to particular problems. Here we demonstrate the use of the hyperbolic tangent (tanh) function as an alternative to ReLU. For niche applications (e.g., cognitive modeling) you could even craft your own bespoke activation functions.</p></li>
+<li><p><b>Dropout</b>: ANNs can use the same regularization, like ridge/lasso, that typical linear models can use. However, dropout is a method unique to ANNs. This method effectively “lesions” a random subset of units during the forward pass of the model. This forces the model to acquire a more robust structure - effectively, many different assemblies that can accomplish the same end goal - that tends to reduce overfitting.</p></li>
+<li><p><b>Early stopping</b>: Another strategy to prevent overfitting is early stopping. This strategy only makes sense for optimization strategies that proceed in a sequential manner (like gradient descent) rather than a single step of matrix math. Early stopping compares the performance of the model in training set to its performance in a validation set. As long as validation performance continues to improve, the model keep training. But when training performance improves while validation performance stalls, this is a sign of overfitting. Early stopping tracks this potential divergence between training and validation, and stops training when validation performance stops improving.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define model architecture</span>
+<span class="k">class</span> <span class="nc">FancyANN</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ninput</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">noutput</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">nhlayer</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">fextint</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fextint</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">fextint</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fextint</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="n">nhlayer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nhlayer</span> <span class="o">=</span> <span class="n">nhlayer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layerlist</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nhlayer</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">layerlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">ninput</span><span class="p">,</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="n">nhlayer</span><span class="o">-</span><span class="n">i</span><span class="p">)))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">layerlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="n">nhlayer</span><span class="o">-</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="n">nhlayer</span><span class="o">-</span><span class="n">i</span><span class="p">)))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">layerlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Tanh</span><span class="p">())</span>    <span class="c1"># here&#39;s our alternative activation function (tanh)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">layerlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="n">nhlayer</span><span class="o">-</span><span class="n">i</span><span class="p">)))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">layerlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">.01</span><span class="p">))</span>    <span class="c1">## here&#39;s where we add dropout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layerlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fextint</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="n">noutput</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layerlist</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layerlist</span><span class="p">[</span><span class="n">i</span><span class="p">](</span><span class="n">x</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">x0</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layerlist</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">](</span><span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">x0</span><span class="p">,</span><span class="n">x</span><span class="p">),</span><span class="mi">1</span><span class="p">))</span> <span class="c1">## here&#39;s where the first layer and penultimate layer get joined together as inputs to the final layer</span>
+        <span class="k">return</span> <span class="n">pred</span>
+
+<span class="n">model5</span> <span class="o">=</span> <span class="n">FancyANN</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>FancyANN(
+  (layerlist): ModuleList(
+    (0): Linear(in_features=1, out_features=32, bias=True)
+    (1): Tanh()
+    (2): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (3): Dropout(p=0.01, inplace=False)
+    (4): Linear(in_features=32, out_features=16, bias=True)
+    (5): Tanh()
+    (6): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (7): Dropout(p=0.01, inplace=False)
+    (8): Linear(in_features=16, out_features=8, bias=True)
+    (9): Tanh()
+    (10): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (11): Dropout(p=0.01, inplace=False)
+    (12): Linear(in_features=8, out_features=4, bias=True)
+    (13): Tanh()
+    (14): BatchNorm1d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (15): Dropout(p=0.01, inplace=False)
+    (16): Linear(in_features=4, out_features=2, bias=True)
+    (17): Tanh()
+    (18): BatchNorm1d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (19): Dropout(p=0.01, inplace=False)
+    (20): Linear(in_features=34, out_features=1, bias=True)
+  )
+)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># this class defines the logic of early stopping</span>
+<span class="c1"># higher patience means that improvement on the validation set has to stall for longer before training is terminated</span>
+<span class="k">class</span> <span class="nc">EarlyStopper</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">min_delta</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">patience</span> <span class="o">=</span> <span class="n">patience</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_delta</span> <span class="o">=</span> <span class="n">min_delta</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_validation_loss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+
+    <span class="k">def</span> <span class="nf">early_stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">validation_loss</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">validation_loss</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_validation_loss</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">min_validation_loss</span> <span class="o">=</span> <span class="n">validation_loss</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">elif</span> <span class="n">validation_loss</span> <span class="o">&gt;</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">min_validation_loss</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_delta</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">patience</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># new we&#39;ll train the model</span>
+<span class="n">early_stopper</span> <span class="o">=</span> <span class="n">EarlyStopper</span><span class="p">(</span><span class="n">patience</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">min_delta</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">loss</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">()</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model5</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span><span class="n">lr</span><span class="o">=</span><span class="mf">.0001</span><span class="p">)</span> <span class="c1"># we&#39;re trying a different optimizer here too (ADAM)</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># this is just an upperbound - the actual epoch # is determined by early stopping</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Epoch </span><span class="si">{</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="se">\n</span><span class="s2">-------------------------------&quot;</span><span class="p">)</span>
+    <span class="n">train</span><span class="p">(</span><span class="n">train_dataloader</span><span class="p">,</span> <span class="n">model5</span><span class="p">,</span> <span class="n">loss</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">)</span>
+    <span class="n">val_loss</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">val_dataloader</span><span class="p">,</span> <span class="n">model5</span><span class="p">,</span> <span class="n">loss</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">early_stopper</span><span class="o">.</span><span class="n">early_stop</span><span class="p">(</span><span class="n">val_loss</span><span class="p">):</span>
+        <span class="k">break</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1
+-------------------------------
+loss: 3.888131  [   64/100000]
+loss: 3.917098  [ 6464/100000]
+loss: 2.937879  [12864/100000]
+loss: 5.071634  [19264/100000]
+loss: 3.716036  [25664/100000]
+loss: 2.398747  [32064/100000]
+loss: 1.351015  [38464/100000]
+loss: 1.365817  [44864/100000]
+loss: 1.875856  [51264/100000]
+loss: 1.061013  [57664/100000]
+loss: 1.337905  [64064/100000]
+loss: 1.853628  [70464/100000]
+loss: 0.764149  [76864/100000]
+loss: 0.915835  [83264/100000]
+loss: 0.340542  [89664/100000]
+loss: 0.346805  [96064/100000]
+Test performance: 
+ R^2: 0.780519, RMSE: 0.845239 
+
+Epoch 2
+-------------------------------
+loss: 0.396910  [   64/100000]
+loss: 0.205753  [ 6464/100000]
+loss: 0.607033  [12864/100000]
+loss: 1.113464  [19264/100000]
+loss: 0.097006  [25664/100000]
+loss: 0.100322  [32064/100000]
+loss: 0.931997  [38464/100000]
+loss: 0.178657  [44864/100000]
+loss: 0.537316  [51264/100000]
+loss: 0.205982  [57664/100000]
+loss: 0.245557  [64064/100000]
+loss: 0.080524  [70464/100000]
+loss: 0.222449  [76864/100000]
+loss: 0.213365  [83264/100000]
+loss: 0.096103  [89664/100000]
+loss: 0.591012  [96064/100000]
+Test performance: 
+ R^2: 0.979044, RMSE: 0.285466 
+
+Epoch 3
+-------------------------------
+loss: 0.064183  [   64/100000]
+loss: 0.243895  [ 6464/100000]
+loss: 0.307392  [12864/100000]
+loss: 0.179972  [19264/100000]
+loss: 0.183356  [25664/100000]
+loss: 0.188181  [32064/100000]
+loss: 0.091715  [38464/100000]
+loss: 0.677460  [44864/100000]
+loss: 0.177787  [51264/100000]
+loss: 0.066920  [57664/100000]
+loss: 0.166385  [64064/100000]
+loss: 0.066744  [70464/100000]
+loss: 0.129679  [76864/100000]
+loss: 0.137251  [83264/100000]
+loss: 0.135885  [89664/100000]
+loss: 0.153805  [96064/100000]
+Test performance: 
+ R^2: 0.986803, RMSE: 0.227382 
+
+Epoch 4
+-------------------------------
+loss: 0.329610  [   64/100000]
+loss: 0.309667  [ 6464/100000]
+loss: 0.238928  [12864/100000]
+loss: 0.049671  [19264/100000]
+loss: 0.172278  [25664/100000]
+loss: 0.167100  [32064/100000]
+loss: 0.202609  [38464/100000]
+loss: 0.105646  [44864/100000]
+loss: 0.214544  [51264/100000]
+loss: 0.181315  [57664/100000]
+loss: 0.105952  [64064/100000]
+loss: 0.054405  [70464/100000]
+loss: 0.230735  [76864/100000]
+loss: 0.109101  [83264/100000]
+loss: 0.124816  [89664/100000]
+loss: 0.099370  [96064/100000]
+Test performance: 
+ R^2: 0.988537, RMSE: 0.204467 
+
+Epoch 5
+-------------------------------
+loss: 0.063645  [   64/100000]
+loss: 0.123861  [ 6464/100000]
+loss: 0.083427  [12864/100000]
+loss: 0.250894  [19264/100000]
+loss: 0.298372  [25664/100000]
+loss: 0.049779  [32064/100000]
+loss: 0.054952  [38464/100000]
+loss: 0.233167  [44864/100000]
+loss: 0.297191  [51264/100000]
+loss: 0.102348  [57664/100000]
+loss: 0.036531  [64064/100000]
+loss: 0.079810  [70464/100000]
+loss: 0.119193  [76864/100000]
+loss: 0.105115  [83264/100000]
+loss: 0.118437  [89664/100000]
+loss: 0.212578  [96064/100000]
+Test performance: 
+ R^2: 0.989374, RMSE: 0.194593 
+
+Epoch 6
+-------------------------------
+loss: 0.104637  [   64/100000]
+loss: 0.124436  [ 6464/100000]
+loss: 0.227147  [12864/100000]
+loss: 0.285004  [19264/100000]
+loss: 0.306534  [25664/100000]
+loss: 0.126568  [32064/100000]
+loss: 0.062833  [38464/100000]
+loss: 0.070517  [44864/100000]
+loss: 0.049845  [51264/100000]
+loss: 0.080152  [57664/100000]
+loss: 0.142207  [64064/100000]
+loss: 0.082779  [70464/100000]
+loss: 0.067380  [76864/100000]
+loss: 0.080468  [83264/100000]
+loss: 0.099579  [89664/100000]
+loss: 0.149001  [96064/100000]
+Test performance: 
+ R^2: 0.991916, RMSE: 0.170523 
+
+Epoch 7
+-------------------------------
+loss: 0.090363  [   64/100000]
+loss: 0.105410  [ 6464/100000]
+loss: 0.040804  [12864/100000]
+loss: 0.054256  [19264/100000]
+loss: 0.027425  [25664/100000]
+loss: 0.207500  [32064/100000]
+loss: 0.090952  [38464/100000]
+loss: 0.086845  [44864/100000]
+loss: 0.079099  [51264/100000]
+loss: 0.275742  [57664/100000]
+loss: 0.028412  [64064/100000]
+loss: 0.116104  [70464/100000]
+loss: 0.120119  [76864/100000]
+loss: 0.070722  [83264/100000]
+loss: 0.085920  [89664/100000]
+loss: 0.083501  [96064/100000]
+Test performance: 
+ R^2: 0.991818, RMSE: 0.170135 
+
+Epoch 8
+-------------------------------
+loss: 0.223899  [   64/100000]
+loss: 0.205298  [ 6464/100000]
+loss: 0.073132  [12864/100000]
+loss: 1.529429  [19264/100000]
+loss: 0.101772  [25664/100000]
+loss: 0.157559  [32064/100000]
+loss: 0.073842  [38464/100000]
+loss: 0.123590  [44864/100000]
+loss: 0.053510  [51264/100000]
+loss: 0.150473  [57664/100000]
+loss: 0.092963  [64064/100000]
+loss: 0.050164  [70464/100000]
+loss: 0.299292  [76864/100000]
+loss: 0.059084  [83264/100000]
+loss: 0.048018  [89664/100000]
+loss: 0.114542  [96064/100000]
+Test performance: 
+ R^2: 0.992695, RMSE: 0.156656 
+
+Epoch 9
+-------------------------------
+loss: 0.048064  [   64/100000]
+loss: 1.965292  [ 6464/100000]
+loss: 0.050489  [12864/100000]
+loss: 0.111465  [19264/100000]
+loss: 0.129185  [25664/100000]
+loss: 0.453362  [32064/100000]
+loss: 0.169424  [38464/100000]
+loss: 0.096436  [44864/100000]
+loss: 0.081334  [51264/100000]
+loss: 0.086524  [57664/100000]
+loss: 0.108220  [64064/100000]
+loss: 0.026716  [70464/100000]
+loss: 0.330060  [76864/100000]
+loss: 0.081770  [83264/100000]
+loss: 0.102128  [89664/100000]
+loss: 0.380724  [96064/100000]
+Test performance: 
+ R^2: 0.992518, RMSE: 0.160280 
+
+Epoch 10
+-------------------------------
+loss: 0.067976  [   64/100000]
+loss: 0.061944  [ 6464/100000]
+loss: 0.093701  [12864/100000]
+loss: 0.062002  [19264/100000]
+loss: 0.124478  [25664/100000]
+loss: 0.267889  [32064/100000]
+loss: 0.094276  [38464/100000]
+loss: 0.100655  [44864/100000]
+loss: 0.194106  [51264/100000]
+loss: 1.437881  [57664/100000]
+loss: 0.037840  [64064/100000]
+loss: 0.100686  [70464/100000]
+loss: 0.042177  [76864/100000]
+loss: 0.150511  [83264/100000]
+loss: 0.025171  [89664/100000]
+loss: 0.045438  [96064/100000]
+Test performance: 
+ R^2: 0.991603, RMSE: 0.166102 
+
+Epoch 11
+-------------------------------
+loss: 0.113018  [   64/100000]
+loss: 0.364865  [ 6464/100000]
+loss: 0.086984  [12864/100000]
+loss: 0.089000  [19264/100000]
+loss: 0.048422  [25664/100000]
+loss: 0.111554  [32064/100000]
+loss: 0.170104  [38464/100000]
+loss: 0.456190  [44864/100000]
+loss: 0.430310  [51264/100000]
+loss: 0.137799  [57664/100000]
+loss: 0.087476  [64064/100000]
+loss: 0.034155  [70464/100000]
+loss: 0.051317  [76864/100000]
+loss: 0.139362  [83264/100000]
+loss: 0.162727  [89664/100000]
+loss: 0.079858  [96064/100000]
+Test performance: 
+ R^2: 0.992894, RMSE: 0.148741 
+
+Epoch 12
+-------------------------------
+loss: 0.156293  [   64/100000]
+loss: 0.093481  [ 6464/100000]
+loss: 0.044689  [12864/100000]
+loss: 0.069560  [19264/100000]
+loss: 0.049289  [25664/100000]
+loss: 0.330965  [32064/100000]
+loss: 0.060987  [38464/100000]
+loss: 0.041339  [44864/100000]
+loss: 0.157445  [51264/100000]
+loss: 0.097228  [57664/100000]
+loss: 0.154629  [64064/100000]
+loss: 0.153998  [70464/100000]
+loss: 0.262758  [76864/100000]
+loss: 0.049504  [83264/100000]
+loss: 0.030409  [89664/100000]
+loss: 0.068077  [96064/100000]
+Test performance: 
+ R^2: 0.992230, RMSE: 0.156347 
+
+Epoch 13
+-------------------------------
+loss: 0.205354  [   64/100000]
+loss: 0.252282  [ 6464/100000]
+loss: 0.046880  [12864/100000]
+loss: 0.122652  [19264/100000]
+loss: 0.040483  [25664/100000]
+loss: 0.332348  [32064/100000]
+loss: 0.209426  [38464/100000]
+loss: 0.071124  [44864/100000]
+loss: 0.103392  [51264/100000]
+loss: 0.065575  [57664/100000]
+loss: 0.078010  [64064/100000]
+loss: 0.036993  [70464/100000]
+loss: 0.177545  [76864/100000]
+loss: 0.105658  [83264/100000]
+loss: 0.056419  [89664/100000]
+loss: 0.047285  [96064/100000]
+Test performance: 
+ R^2: 0.991006, RMSE: 0.164956 
+
+Epoch 14
+-------------------------------
+loss: 0.142373  [   64/100000]
+loss: 0.032840  [ 6464/100000]
+loss: 0.054341  [12864/100000]
+loss: 0.045234  [19264/100000]
+loss: 0.072157  [25664/100000]
+loss: 0.146573  [32064/100000]
+loss: 0.042619  [38464/100000]
+loss: 0.093733  [44864/100000]
+loss: 0.126631  [51264/100000]
+loss: 0.174637  [57664/100000]
+loss: 0.021763  [64064/100000]
+loss: 0.069974  [70464/100000]
+loss: 0.037953  [76864/100000]
+loss: 0.215359  [83264/100000]
+loss: 0.056612  [89664/100000]
+loss: 0.086736  [96064/100000]
+Test performance: 
+ R^2: 0.991521, RMSE: 0.160487 
+
+Done!
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># performance metrics</span>
+<span class="n">perf</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">test_dataloader</span><span class="p">,</span> <span class="n">model5</span><span class="p">,</span> <span class="n">loss</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test performance: 
+ R^2: 0.992058, RMSE: 0.155241 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># plotting actual values vs. predictions</span>
+<span class="n">ypred</span> <span class="o">=</span> <span class="n">model5</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">x_test</span><span class="p">))</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">))</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ypred</span><span class="p">,</span><span class="n">y_non_test</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mf">.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Predictions&quot;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Actual values&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/89cdafd8ede3466c972aee53c0ccd6cf1ab6a6d388f4721f2cbbdced5c4bd7fa.png" src="../_images/89cdafd8ede3466c972aee53c0ccd6cf1ab6a6d388f4721f2cbbdced5c4bd7fa.png" />
+</div>
+</div>
+<p>The bells and whistles buy us only a little bit of extra performance here, but this is a very simple case. In more complex, multivariate situations, these features can have a major effect on model performance.</p>
+</section>
+</section>
+<section id="next-steps">
+<h2>Next steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">#</a></h2>
+<p>This tutorial has provided a basic example of how one can create one’s own artificial neural network using pytorch. However, there’s a lot more that you can do with deep nets beyond what’s been shown here. This final section will point you to some directions for further learning that you may be interested in.</p>
+<section id="other-layer-connectivity-patterns">
+<h3>Other layer connectivity patterns<a class="headerlink" href="#other-layer-connectivity-patterns" title="Permalink to this heading">#</a></h3>
+<p>The layers in the networks you’ve seen here are all “densely” connected. This means that every unit in one layer is connected to every unit in another layer. Most of the connections are also sequential, with the exception of the skip layer connection in the last model. However, there are a wide variety of other connectivity patterns that can perform better for particular applications. Several of these patterns are illustrated in the figure below.</p>
+<p><img alt="" src="https://mysocialbrain.org/misc/data/ann_tutorial/Fig1_DS_hires_bottom.png" /></p>
+<ul class="simple">
+<li><p>The bottleneck (red) in the autoencoder illustration is a layer that is narrower (i.e., has fewer units) than the ones before or after it. This forces this layer to learn a compressed representation of the data - a bit like PCA, but nonlinear, not (necessarily) orthogonal, and with potentially different loss functions than maximizing variance explained.</p></li>
+<li><p>Convolutional networks are ubiquitous due to their effectiveness in dealing with image-like data (e.g., photos, video, fMRI, or even spectrograms of audio or electrophysiology). The connectivity pattern - and receptive fields that emerge - loosely approximate the human visual system.</p></li>
+<li><p>Recurrent connectivity carries a unit’s activity forward from one time point to another. Long short-term memory (LSTM) networks are probably the best known example of this type. These models are most often used for time series and other sequential data.</p></li>
+<li><p>Perhaps the most important type of unit/connectivity (not pictured due to its complexity) is the attention mechanism of transformer architectures. Transformers are beyond the scope of this introduction, but they support many of the most influential ANNs as of time of writing (e.g., all  the major large language models like GPT).</p></li>
+</ul>
+</section>
+<section id="applications">
+<h3>Applications<a class="headerlink" href="#applications" title="Permalink to this heading">#</a></h3>
+<p>One way to organize your learning is to think about how you want to apply deep nets in your own research. The figure below illustrates some of the main uses cases that you might be interested in. These include (A) training statistical biomarkers to predict phenotypes from brain data, (B) using computer vision/audition models to annotate behavior in stimuli/recordings of participants, and (C) training models on the same tasks as participants, so that they can be used as cognitive models. Once you know which of these applications you want to use in your research, it can help you figure out where to go next. <img alt="" src="https://mysocialbrain.org/misc/data/ann_tutorial/Fig2_DS.png" /></p>
+</section>
+<section id="learning-resources">
+<h3>Learning resources<a class="headerlink" href="#learning-resources" title="Permalink to this heading">#</a></h3>
+<p>Tutorial material:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pytorch.org/tutorials/">Pytorch’s official tutorials</a></p></li>
+<li><p><a class="reference external" href="https://www.tensorflow.org/tutorials">Tensorflow’s official tutorials</a></p></li>
+</ul>
+<p>Websites:</p>
+<ul class="simple">
+<li><p>If you’re looking to find the best (pre-trained) model for a specific application, <a class="reference external" href="https://paperswithcode.com/">Paper’s with Code</a> is in an extremely useful source. It tracks the state of the art with respect to a huge number of machine learning benchmarks, with links their papers and github repos.</p></li>
+<li><p><a class="reference external" href="https://huggingface.co/">Hugging Face</a> is a model repository where an increasing number of popular pretrained models are uploaded. It provides a consistent API for installing, using, and documenting models, most of which are programmed in PyTorch and/or Tensorflow.</p></li>
+<li><p><a class="reference external" href="https://www.deepmind.com/blog">DeepMind Blog</a>: Google DeepMind maintains a blog where they write about their papers in (relatively) accessible ways.</p></li>
+</ul>
+<p>Videos:</p>
+<ul class="simple">
+<li><p>Neuromatch’s video playlists on <a class="reference external" href="https://www.youtube.com/watch?v=IZvcy0Myb3M&amp;list=PLkBQOLLbi18PZ2uw0p7G4EkzjzqP8l0Eg">deep learning</a>, and <a class="reference external" href="https://www.youtube.com/watch?v=VwSnDJZekQ4&amp;list=PLkBQOLLbi18Ojl1CV8W00JZ0C0hivBxw1">autoencoders</a>,</p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=0bMe_vCZo30&amp;list=PLLHTzKZzVU9eaEyErdV26ikyolxOsz6mq">NYU deep learning course</a>.</p></li>
+<li><p>Berkeley <a class="reference external" href="https://sites.google.com/view/deep-rl-bootcamp/lectures">Deep Reinforcement Learning Bootcamp</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/&#64;TwoMinutePapers">Two minute papers</a> Short, easily digested videos on recent modeling</p></li>
+</ul>
+<p>Many of my favorite scientific papers on deep learning are cited within these two papers:</p>
+<ul class="simple">
+<li><p>Thornton, M.A., &amp; Sievers, B. (2023). Deep social neuroscience: The promise and peril of using artificial neural networks to study the social brain. <i>PsyArXiv.</i> <a class="reference external" href="https://psyarxiv.com/fr4cb">Preprint</a></p></li>
+<li><p>Lin, C., Bulls, L. S., Tepfer, L. J., Vyas, A., Thornton, M. A., (2023).
+Advancing naturalistic affective science with deep learning. <i>Affective Science.</i> <a class="reference external" href="https://psyarxiv.com/j5q9h/">Preprint</a></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Intersubject_Correlation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Synchrony &amp; Alignment</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="models_of_text_and_language.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Models of text and language</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-for-methods-in-neuroscience-at-dartmouth-mind-2023">Tutorial for Methods In Neuroscience at Dartmouth (MIND) 2023</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-packages">Import packages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#detect-and-set-hardware-device">Detect and set hardware device</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-data">Simulate data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-linear-regression">Simple linear regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nonlinear-regression">Nonlinear regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trying-the-linear-model-on-nonlinear-data">Trying the linear model on nonlinear data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shallow-wide-nonlinear-ann">Shallow/wide nonlinear ANN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deep-neural-network">Deep neural network</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bells-and-whistles">Bells and whistles</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next steps</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-layer-connectivity-patterns">Other layer connectivity patterns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">Applications</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-resources">Learning resources</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Luke Chang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  Created by <a href="http://www.lukejchang.com/">Luke Chang</a> using <a href="https://jupyterbook.org/">Jupyter Book</a> and supported by NSF (CAREER Award 1848370) and the <a href="https://www.interactingminds.com/">Consortium for Interacting Minds</a>. Please post any questions on our <a href="https://www.askpbs.org/c/mind-summer-school/">Discourse Page</a>.
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
