@@ -21,8 +21,7 @@ parts:
         title: Naturalistic Data Analysis Course
   - caption: Analysis Tutorials
     chapters:
-      - file: content/Functional_Alignment
-      - file: content/Intersubject_Correlation
+      - file: content/Synchrony
       - file: content/ANN_tutorial
       - file: content/models_of_text_and_language
       - file: content/generative_faces
