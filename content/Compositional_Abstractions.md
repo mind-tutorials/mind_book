@@ -42,7 +42,7 @@ Each can be tackled separately, however, they are designed to be run in order.
 
 ## Installation
 
-1. Clone this repo.
+1. Clone our github [repo](https://github.com/cogtoolslab/compositional_abstractions_tutorial).
 2. (optional but makes life easier) 
    1. Create a virtual env: `python3 -m venv ca_tutorial`
    2. Activate it: `source ca_tutorial/bin/activate`
